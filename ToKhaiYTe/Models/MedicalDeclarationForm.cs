@@ -14,7 +14,8 @@ namespace ToKhaiYTe.Models
         [Required]
         public string Fullname { get; set; }
         [Required]
-        public int DoB { get; set; }
+        [DataType(DataType.Date)]
+        public string DoB { get; set; }
         [Required]
         public string Gender { get; set; }
         [Required]
@@ -32,7 +33,9 @@ namespace ToKhaiYTe.Models
         [Required]
         public string CurrentAddressStreet { get; set; }
         [Required]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public virtual TravelInfomation TravelInfomation { get; set; }

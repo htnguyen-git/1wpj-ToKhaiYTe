@@ -16,8 +16,10 @@ namespace ToKhaiYTe.Models
         public string TransportStationNumber { get; set; }
         public string SeatNumber { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public string DepartureDate { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public string EntryDate { get; set; }
         [Required]
         public string DepartureCountry { get; set; }

@@ -13,11 +13,26 @@ namespace ToKhaiYTe.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Index(MDFViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.Status = "Bạn đã nhập tờ khai thành công ";
+            }
+            return View();
+        }
+        public IActionResult CompleteCreate()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {
