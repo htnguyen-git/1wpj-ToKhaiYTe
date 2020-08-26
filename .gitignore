@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ToKhaiYTe
+/ToKhaiYTe/.vs/ToKhaiYTe/v16
+/ToKhaiYTe/bin/Debug/netcoreapp3.1
+/ToKhaiYTe/obj
+/ToolCrawList/obj
+/ToolCrawList/bin/Debug/netcoreapp3.1

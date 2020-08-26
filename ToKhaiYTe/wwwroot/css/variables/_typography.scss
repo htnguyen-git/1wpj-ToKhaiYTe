@@ -1,0 +1,6 @@
+﻿$base: 16px;
+$GOLDEN_RATIO: 1.618;
+
+$normal: $base;
+$large: $base * $GOLDEN_RATIO;
+$larger: $base * $GOLDEN_RATIO * $GOLDEN_RATIO;
