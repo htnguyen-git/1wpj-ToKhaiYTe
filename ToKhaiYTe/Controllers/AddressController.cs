@@ -39,5 +39,16 @@ namespace ToKhaiYTe.Controllers
             var listProvince = contextAddress.GetProvince();
             return Json(new {listProvince });
         }
+
+        public JsonResult GetListDistrict(int id)
+        {
+            var listDistrict = contextAddress.GetDistricts(id);
+            return Json(new { listDistrict });
+        }
+        public JsonResult GetListWard(int Id)
+        {
+            var listWard = contextAddress.GetWards(Id);
+            return Json(new { listWard });
+        }
     }
 }

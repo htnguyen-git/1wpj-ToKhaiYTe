@@ -21,9 +21,9 @@ namespace ToKhaiYTe.Models.AddressInfo
             
         }
 
-        public Task<IEnumerable<District>> GetDistricts(int ProvinceId)
+        public async Task<IEnumerable<District>> GetDistricts(int ProvinceId)
         {
-            throw new NotImplementedException();
+            return await context.District.Where(e => e.ProvinceId == ProvinceId).ToListAsync();
         }
 
         public async Task<IEnumerable<Gate>> GetGates()
@@ -37,9 +37,9 @@ namespace ToKhaiYTe.Models.AddressInfo
             return await context.Province.ToListAsync();
         }
 
-        public Task<IEnumerable<Ward>> GetWards(int DistrictId)
+        public async Task<IEnumerable<Ward>> GetWards(int DistrictId)
         {
-            throw new NotImplementedException();
+            return await context.Ward.Where(w => w.DistrictID == DistrictId).ToListAsync();
         }
     }
 }

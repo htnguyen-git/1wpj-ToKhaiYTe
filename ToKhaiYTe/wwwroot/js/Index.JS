@@ -4,8 +4,8 @@ var urlGetListGate = "/Address/GetListGate";
 var urlGetListGender = "/Helper/GetListGender";
 var urlGetListNational = "/address/GetListNational";
 var urlGetListProvince = "/address/getListProvince";
-
-
+var urlGetListDistrict = "address/getlistdistrict/";
+var urlGetListWard = "address/getListWard/"
 var getListGate = function () {
     $('#Gate').append('<option value="" disabled selected>-Chọn-</option>')
     $.ajax({
@@ -51,11 +51,33 @@ var getListNational = function () {
     });
 }
 
-$(function () {
-    getListGate();
-    getListGender();
-    getListNational();
-});
+
+var getListVNProvince = function () {
+    $.ajax({
+        type: "GET",
+        url: urlGetListProvince,
+        dataType: "json",
+        success: function (response) {
+            $.each(response.listProvince.result, function (i, v) {
+                
+                $("#vnProvince").append('<option value="' + v.id + '">' + v.name + '</option>')
+            });
+        }
+    });
+}
+
+var getListDistrict = function (id) {
+    $.ajax({
+        type: "GET",
+        url: `${urlGetListDistrict}${parseInt(id)}`,
+        data: "name=John&location=Boston",
+        dataType: "json",
+        success: function (response) {
+            console.log(response.listDistrict.result);
+        }
+    });
+}
+
 
 $("#DepartureCountry").change(function (e) {
     let departureCountry = $("#DepartureCountry").val();
@@ -93,4 +115,41 @@ $("#DestinyLocationCountry").change(function (e) {
         });
     }
 
+});
+
+$(function () {
+    getListGate();
+    getListGender();
+    getListNational();
+    getListVNProvince();
+});
+
+
+
+$("#vnProvince").change(function (e) {
+    let IdProvince = $("#vnProvince").val();
+    $.ajax({
+        type: "GET",
+        url: `${urlGetListDistrict}${parseInt(IdProvince)}`,
+        dataType: "json",
+        success: function (response) {
+            $.each(response.listDistrict.result, function (i, v) {
+                $("#CurrentAddressDistrict").append('<option value="' + v.id + '">' + v.name + '</option>')
+            });
+        }
+    });
+});
+
+$("#CurrentAddressDistrict").change(function (e) {
+    let IdDistrict = $("#CurrentAddressDistrict").val();
+    $.ajax({
+        type: "GET",
+        url: `${urlGetListWard}${parseInt(IdDistrict)}`,
+        dataType: "json",
+        success: function (response) {
+            $.each(response.listWard.result, function (i, v) {
+                $("#CurrentAddressWard").append('<option value="' + v.id + '">' + v.name + '</option>')
+            });
+        }
+    });
 });

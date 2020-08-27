@@ -3,14 +3,14 @@
 
 
 <div class="container">
-    <form asp-action="Index" method="post">
+    
+    <form asp-action="Index">
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
                     <label asp-for="GateId"></label> @*
-                        <input asp-for="GateId" class="form-control" />*@
-                    <select id="Gate" class="form-control" asp-for="GateId" >
-                        
+                    <input asp-for="GateId" class="form-control" />*@
+                    <select id="Gate" class="form-control" asp-for="GateId">
                     </select>
                     <span asp-validation-for="GateId" class="text-danger"></span>
                 </div>
@@ -21,7 +21,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label asp-for="Fullname" class="control-label"></label>
-                    <input asp-for="Fullname" class="form-control" />
+                    <input asp-for="Fullname" class="form-control text-uppercase"/>
                     <span asp-validation-for="Fullname" class="text-danger"></span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label asp-for="Gender" class="control-label"></label> @*
-                        <input asp-for="Gender" class="form-control" />*@
+                    <input asp-for="Gender" class="form-control" />*@
                     <select id="Gender" asp-for="Gender" class="form-control"></select>
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
@@ -46,9 +46,8 @@
             <div class="col-4">
                 <div class="form-group">
                     <label asp-for="National" class="control-label"></label> @*
-                        <input asp-for="National" class="form-control" />*@
-                    <select  asp-for="National" class="form-control National">
-                        
+                    <input asp-for="National" class="form-control" />*@
+                    <select asp-for="National" class="form-control National">
                     </select>
                     <span asp-validation-for="National" class="text-danger"></span>
                 </div>
@@ -66,381 +65,388 @@
 
         </div>
 
-    </form>
 
 
 
 
-    <hr />
-    <div>
-        <div class="row">
-            <div class="col-2">
-                <label>Thông tin đi lại </label>
-            </div>
-            <div class="col-2">
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="AirPlane" /> @Html.DisplayNameFor(model => model.AirPlane)
-                    </label>
+
+        <hr />
+        <div>
+            <div class="row">
+                <div class="col-2">
+                    <label>Thông tin đi lại </label>
+                </div>
+                <div class="col-2">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="AirPlane" /> @Html.DisplayNameFor(model => model.AirPlane)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Ships" /> @Html.DisplayNameFor(model => model.Ships)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Car" /> @Html.DisplayNameFor(model => model.Car)
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Ships" /> @Html.DisplayNameFor(model => model.Ships)
-                    </label>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="AnotherVerhicle" class="control-label"></label>
+                        <textarea asp-for="AnotherVerhicle" class="form-control" rows="2" cols="100"></textarea>
+                        <span asp-validation-for="AnotherVerhicle" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Car" /> @Html.DisplayNameFor(model => model.Car)
-                    </label>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="TransportStationNumber" class="control-label"></label>
+                        <input asp-for="TransportStationNumber" class="form-control" />
+                        <span asp-validation-for="TransportStationNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="SeatNumber" class="control-label"></label>
+                        <input asp-for="SeatNumber" class="form-control" />
+                        <span asp-validation-for="SeatNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="DepartureDate" class="control-label"></label>
+                        <input asp-for="DepartureDate" class="form-control" />
+                        <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="EntryDate" class="control-label"></label>
+                        <input asp-for="EntryDate" class="form-control" />
+                        <span asp-validation-for="EntryDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="control-label"><b>Địa điểm khởi hành</b> </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="DepartureCountry" class="control-label"></label>
+                        <select id="DepartureCountry" class="form-control National" asp-for="DepartureCountry">
+                        </select>
+
+                        <span asp-validation-for="DepartureCountry" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="DepartureProvince" class="control-label"></label>
+                        <input asp-for="DepartureProvince" class="form-control" />
+
+                        <span asp-validation-for="DepartureProvince" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="control-label"> Địa điểm đến</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="DestinyLocationCountry" class="control-label"></label>
+                        <select class="form-control National" asp-for="DestinyLocationCountry" id="DestinyLocationCountry">
+                        </select>
+                        <span asp-validation-for="DestinyLocationCountry" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="DestinyLocationProvince" class="control-label"></label>
+                        <input asp-for="DestinyLocationProvince" class="form-control" />
+                        <span asp-validation-for="DestinyLocationProvince" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
+
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="ListCountryhasGoneThrough" class="control-label"></label>
+                        <input asp-for="ListCountryhasGoneThrough" class="form-control" />
+                        <span asp-validation-for="ListCountryhasGoneThrough" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <label><b>Địa chỉ liên lạc tại Việt Nam</b></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="CurrentAddressProvince" class="control-label"></label>
+                        <select id="vnProvince" class="form-control" asp-for="CurrentAddressProvince">
+                            <option value="" selected disabled>-Chọn-</option>
+                        </select>
+                        
+                        <span asp-validation-for="CurrentAddressProvince" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="CurrentAddressDistrict" class="control-label"></label>
+                        <select id="CurrentAddressDistrict" class="form-control" asp-for="CurrentAddressDistrict">
+                            <option value="" selected disabled>-Chọn-</option>
+                        </select>
+                        <span asp-validation-for="CurrentAddressDistrict" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="CurrentAddressWard" class="control-label"></label>
+                        <select id="CurrentAddressWard" class="form-control" asp-for="CurrentAddressWard">
+                            <option value="" selected disabled>-Chọn-</option>
+                        </select>
+                        <span asp-validation-for="CurrentAddressWard" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="CurrentAddressStreet" class="control-label"></label>
+                        <input asp-for="CurrentAddressStreet" class="form-control" />
+                        <span asp-validation-for="CurrentAddressStreet" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label><sub>Số điện thoại bạn sẽ sử dụng tại Việt Nam (Là số Roaming hoặc số Việt Nam)</sub></label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <label><b>Trong vòng 21 ngày (tính đến thời điểm làm thủ tục xuất cảnh, nhập cảnh, quá cảnh) Anh/Chị có thấy xuất hiện dấu hiệu nào sau đây không?</b></label>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="col-4">Triệu chứng </th>
+                            <th class="col-1">Có</th>
+                            <th class="col-1">Không</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.Fever)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Fever" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Fever" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.Cough)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Cough" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Cough" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.DifficultOfBreathing)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="DifficultOfBreathing" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="DifficultOfBreathing" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.SoreThroat)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="SoreThroat" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="SoreThroat" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.Vomiting)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Vomiting" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Vomiting" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.Diarrhea)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Diarrhea" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Diarrhea" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.SkinHaemorrhage)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="SkinHaemorrhage" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="SkinHaemorrhage" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @Html.DisplayNameFor(model => model.Rash)
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Rash" value="true" />
+                            </td>
+                            <td>
+                                <input type="radio" asp-for="Rash" value="false" />
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="UsedVaccineList" class="control-label"></label>
+                        <input asp-for="UsedVaccineList" class="form-control" />
+                        <span asp-validation-for="UsedVaccineList" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
         <div class="row">
             <div class="col-12">
-                <div class="form-group">
-                    <label asp-for="AnotherVerhicle" class="control-label"></label>
-                    <textarea asp-for="AnotherVerhicle" class="form-control" rows="2" cols="100"></textarea>
-                    <span asp-validation-for="AnotherVerhicle" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="TransportStationNumber" class="control-label"></label>
-                    <input asp-for="TransportStationNumber" class="form-control" />
-                    <span asp-validation-for="TransportStationNumber" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="SeatNumber" class="control-label"></label>
-                    <input asp-for="SeatNumber" class="form-control" />
-                    <span asp-validation-for="SeatNumber" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="DepartureDate" class="control-label"></label>
-                    <input asp-for="DepartureDate" class="form-control" />
-                    <span asp-validation-for="DepartureDate" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="EntryDate" class="control-label"></label>
-                    <input asp-for="EntryDate" class="form-control" />
-                    <span asp-validation-for="EntryDate" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label class="control-label"><b>Địa điểm khởi hành</b> </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="DepartureCountry" class="control-label"></label>
-                    <select id="DepartureCountry" class="form-control National" asp-for="DepartureCountry">
-                    </select>
-                    
-                    <span asp-validation-for="DepartureCountry" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="DepartureProvince" class="control-label"></label>
-                    <input asp-for="DepartureProvince" class="form-control" />
-                    
-                    <span asp-validation-for="DepartureProvince" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label class="control-label"> Địa điểm đến</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="DestinyLocationCountry" class="control-label"></label>
-                    <select class="form-control National" asp-for="DestinyLocationCountry" id="DestinyLocationCountry">
-                    </select>
-                    <span asp-validation-for="DestinyLocationCountry" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="DestinyLocationProvince" class="control-label"></label>
-                    <input asp-for="DepartureProvince" class="form-control" />
-                    <span asp-validation-for="DestinyLocationProvince" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label asp-for="ListCountryhasGoneThrough" class="control-label"></label>
-                    <input asp-for="ListCountryhasGoneThrough" class="form-control" />
-                    <span asp-validation-for="ListCountryhasGoneThrough" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div>
-        <div class="row">
-            <div class="col-12">
-                <label><b>Địa chỉ liên lạc tại Việt Nam</b></label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <div class="form-group">
-                    <label asp-for="CurrentAddressProvince" class="control-label"></label>
-                    <input asp-for="CurrentAddressProvince" class="form-control" />
-                    <span asp-validation-for="CurrentAddressProvince" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label asp-for="CurrentAddressDistrict" class="control-label"></label>
-                    <input asp-for="CurrentAddressDistrict" class="form-control" />
-                    <span asp-validation-for="CurrentAddressDistrict" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label asp-for="CurrentAddressWard" class="control-label"></label>
-                    <input asp-for="CurrentAddressWard" class="form-control" />
-                    <span asp-validation-for="CurrentAddressWard" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label asp-for="CurrentAddressStreet" class="control-label"></label>
-                    <input asp-for="CurrentAddressStreet" class="form-control" />
-                    <span asp-validation-for="CurrentAddressStreet" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label><sub>Số điện thoại bạn sẽ sử dụng tại Việt Nam (Là số Roaming hoặc số Việt Nam)</sub></label>
-            </div>
-            
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="PhoneNumber" class="control-label"></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div>
-        <div class="row">
-            <div class="col-12">
-                <label><b>Trong vòng 21 ngày (tính đến thời điểm làm thủ tục xuất cảnh, nhập cảnh, quá cảnh) Anh/Chị có thấy xuất hiện dấu hiệu nào sau đây không?</b></label>
-            </div>
-        </div>
-        <div class="row">
-            <table class="table table-responsive">
-                <thead>
-                    <tr>
-                        <th class="col-4">Triệu chứng </th>
-                        <th class="col-1">Có</th>
-                        <th class="col-1">Không</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.Fever)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Fever" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Fever" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.Cough)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Cough" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Cough" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.DifficultOfBreathing)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="DifficultOfBreathing" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="DifficultOfBreathing" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.SoreThroat)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="SoreThroat" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="SoreThroat" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.Vomiting)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Vomiting" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Vomiting" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.Diarrhea)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Diarrhea" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Diarrhea" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.SkinHaemorrhage)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="SkinHaemorrhage" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="SkinHaemorrhage" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    @Html.DisplayNameFor(model => model.Rash)
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Rash" value="true" />
-                        </td>
-                        <td>
-                            <input type="radio" asp-for="Rash" value="false" />
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-
-
-
-    <div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label asp-for="UsedVaccineList" class="control-label"></label>
-                    <input asp-for="UsedVaccineList" class="form-control" />
-                    <span asp-validation-for="UsedVaccineList" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <form>
-
-        <div class="row">
-            <div class="col-12">
-                <label><b>Lịch sử phơi nhiễm: Trong vòng 21 ngày qua, Anh/Chị có</b></label> 
+                <label><b>Lịch sử phơi nhiễm: Trong vòng 21 ngày qua, Anh/Chị có</b></label>
             </div>
         </div>
 
@@ -489,6 +495,7 @@
         </div>
         <button class="btn btn-primary" type="submit">GỬI TỜ KHAI</button>
     </form>
+   
 </div>
 
 <script src="~/lib/jquery/dist/jquery.js"></script>

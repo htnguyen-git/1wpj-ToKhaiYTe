@@ -24,6 +24,7 @@ namespace ToKhaiYTe.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.Status = "Bạn đã nhập tờ khai thành công ";
+                return RedirectToAction("Com");
             }
             return View();
         }
