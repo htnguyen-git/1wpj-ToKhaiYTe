@@ -2,10 +2,10 @@
 var listGate = listGate || {};
 var urlGetListGate = "/Address/GetListGate";
 var urlGetListGender = "/Helper/GetListGender";
-var urlGetListNational = "/address/GetListNational";
+var urlGetListNational = "/address/getlistNational ";
 var urlGetListProvince = "/address/getListProvince";
-var urlGetListDistrict = "address/getlistdistrict/";
-var urlGetListWard = "address/getListWard/"
+var urlGetListDistrict = "/address/getlistdistrict/";
+var urlGetListWard = "/address/getListWard/"
 var getListGate = function () {
     $('#Gate').append('<option value="" disabled selected>-Chọn-</option>')
     $.ajax({

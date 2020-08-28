@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToKhaiYTe.Migrations
 {
-    public partial class DbInit : Migration
+    public partial class InitDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -224,7 +224,7 @@ namespace ToKhaiYTe.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ToKhaiYTe",
+                name: "MedicalDeclarationForm",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -242,18 +242,15 @@ namespace ToKhaiYTe.Migrations
                     CurrentAddressStreet = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: true),
-                    TravelInfomationId = table.Column<int>(nullable: false),
-                    PhatologicalSignId = table.Column<int>(nullable: false),
                     UsedVaccineList = table.Column<string>(nullable: true),
-                    HistoryOfExposureId = table.Column<int>(nullable: false),
                     IsPublished = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ToKhaiYTe", x => x.Id);
+                    table.PrimaryKey("PK_MedicalDeclarationForm", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ToKhaiYTe_Gate_GateId",
+                        name: "FK_MedicalDeclarationForm_Gate_GateId",
                         column: x => x.GateId,
                         principalTable: "Gate",
                         principalColumn: "Id",
@@ -286,21 +283,21 @@ namespace ToKhaiYTe.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LichSuPhoiNhiem",
+                name: "HistoryOfExposure",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
                     MedicalDeclarationFormId = table.Column<int>(nullable: false),
+                    ContactToAnimal = table.Column<bool>(nullable: false),
+                    ContactWithSickPeople = table.Column<bool>(nullable: false),
                     IsPublished = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LichSuPhoiNhiem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LichSuPhoiNhiem_ToKhaiYTe_Id",
-                        column: x => x.Id,
-                        principalTable: "ToKhaiYTe",
+                        name: "FK_HistoryOfExposure_MedicalDeclarationForm_MedicalDeclarationFormId",
+                        column: x => x.MedicalDeclarationFormId,
+                        principalTable: "MedicalDeclarationForm",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -309,7 +306,6 @@ namespace ToKhaiYTe.Migrations
                 name: "PhatologicalSign",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
                     MedicalDeclarationFormId = table.Column<int>(nullable: false),
                     Fever = table.Column<bool>(nullable: false),
                     Cough = table.Column<bool>(nullable: false),
@@ -324,11 +320,10 @@ namespace ToKhaiYTe.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PhatologicalSign", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PhatologicalSign_ToKhaiYTe_Id",
-                        column: x => x.Id,
-                        principalTable: "ToKhaiYTe",
+                        name: "FK_PhatologicalSign_MedicalDeclarationForm_MedicalDeclarationFormId",
+                        column: x => x.MedicalDeclarationFormId,
+                        principalTable: "MedicalDeclarationForm",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -337,7 +332,6 @@ namespace ToKhaiYTe.Migrations
                 name: "TravelInfomation",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
                     AirPlane = table.Column<bool>(nullable: false),
                     Ships = table.Column<bool>(nullable: false),
                     Car = table.Column<bool>(nullable: false),
@@ -356,11 +350,10 @@ namespace ToKhaiYTe.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TravelInfomation", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TravelInfomation_ToKhaiYTe_Id",
-                        column: x => x.Id,
-                        principalTable: "ToKhaiYTe",
+                        name: "FK_TravelInfomation_MedicalDeclarationForm_MedicalDeclarationFormId",
+                        column: x => x.MedicalDeclarationFormId,
+                        principalTable: "MedicalDeclarationForm",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -435,14 +428,29 @@ namespace ToKhaiYTe.Migrations
                 column: "ProvinceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_HistoryOfExposure_MedicalDeclarationFormId",
+                table: "HistoryOfExposure",
+                column: "MedicalDeclarationFormId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicalDeclarationForm_GateId",
+                table: "MedicalDeclarationForm",
+                column: "GateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhatologicalSign_MedicalDeclarationFormId",
+                table: "PhatologicalSign",
+                column: "MedicalDeclarationFormId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Province_CountryId",
                 table: "Province",
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ToKhaiYTe_GateId",
-                table: "ToKhaiYTe",
-                column: "GateId");
+                name: "IX_TravelInfomation_MedicalDeclarationFormId",
+                table: "TravelInfomation",
+                column: "MedicalDeclarationFormId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ward_DistrictID",
@@ -468,7 +476,7 @@ namespace ToKhaiYTe.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "LichSuPhoiNhiem");
+                name: "HistoryOfExposure");
 
             migrationBuilder.DropTable(
                 name: "PhatologicalSign");
@@ -486,7 +494,7 @@ namespace ToKhaiYTe.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ToKhaiYTe");
+                name: "MedicalDeclarationForm");
 
             migrationBuilder.DropTable(
                 name: "District");

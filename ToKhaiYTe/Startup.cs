@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToKhaiYTe.Models;
 using ToKhaiYTe.Models.AddressInfo;
+using ToKhaiYTe.Models.Service;
 
 namespace ToKhaiYTe
 {
@@ -30,6 +31,7 @@ namespace ToKhaiYTe
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IHealthDeclarationService<MDFViewModel>, HealthDeclarationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

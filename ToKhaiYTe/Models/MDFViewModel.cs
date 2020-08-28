@@ -13,7 +13,7 @@ namespace ToKhaiYTe.Models
         public string Fullname { get; set; }
         [Required]
         [Display(Name ="Năm sinh")]
-        [Range(1900,2020)]
+        [Range(1890,2020)]
         public int DoB { get; set; }
         [Required]
         [Display(Name ="Giới tính")]

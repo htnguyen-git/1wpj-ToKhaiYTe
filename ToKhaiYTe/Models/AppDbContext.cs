@@ -13,6 +13,7 @@ namespace ToKhaiYTe.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
         }
         // Address
         public DbSet<Country> Country { get; set; }
@@ -22,9 +23,9 @@ namespace ToKhaiYTe.Models
 
         public DbSet<Gate> Gate { get; set; }
 
-        public DbSet<HistoryOfExposure> LichSuPhoiNhiem { get; set; }
+        public DbSet<HistoryOfExposure> HistoryOfExposure { get; set; }
         public DbSet<PhatologicalSign> PhatologicalSign { get; set; }
-        public DbSet<MedicalDeclarationForm> ToKhaiYTe { get; set; }
+        public DbSet<MedicalDeclarationForm> MedicalDeclarationForm { get; set; }
         public DbSet<TravelInfomation> TravelInfomation { get; set; }
 
 

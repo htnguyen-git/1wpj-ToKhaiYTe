@@ -10,8 +10,8 @@ using ToKhaiYTe.Models;
 namespace ToKhaiYTe.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200826012623_DbInit")]
-    partial class DbInit
+    [Migration("20200827091100_InitDB")]
+    partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -341,8 +341,11 @@ namespace ToKhaiYTe.Migrations
 
             modelBuilder.Entity("ToKhaiYTe.Models.HistoryOfExposure", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<bool>("ContactToAnimal")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ContactWithSickPeople")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -353,9 +356,9 @@ namespace ToKhaiYTe.Migrations
                     b.Property<int>("MedicalDeclarationFormId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasIndex("MedicalDeclarationFormId");
 
-                    b.ToTable("LichSuPhoiNhiem");
+                    b.ToTable("HistoryOfExposure");
                 });
 
             modelBuilder.Entity("ToKhaiYTe.Models.MedicalDeclarationForm", b =>
@@ -402,9 +405,6 @@ namespace ToKhaiYTe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HistoryOfExposureId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -419,15 +419,9 @@ namespace ToKhaiYTe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhatologicalSignId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TravelInfomationId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UsedVaccineList")
                         .HasColumnType("nvarchar(max)");
@@ -436,14 +430,11 @@ namespace ToKhaiYTe.Migrations
 
                     b.HasIndex("GateId");
 
-                    b.ToTable("ToKhaiYTe");
+                    b.ToTable("MedicalDeclarationForm");
                 });
 
             modelBuilder.Entity("ToKhaiYTe.Models.PhatologicalSign", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Cough")
                         .HasColumnType("bit");
 
@@ -477,7 +468,7 @@ namespace ToKhaiYTe.Migrations
                     b.Property<bool>("Vomiting")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasIndex("MedicalDeclarationFormId");
 
                     b.ToTable("PhatologicalSign");
                 });
@@ -526,9 +517,6 @@ namespace ToKhaiYTe.Migrations
 
             modelBuilder.Entity("ToKhaiYTe.Models.TravelInfomation", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("AirPlane")
                         .HasColumnType("bit");
 
@@ -580,7 +568,7 @@ namespace ToKhaiYTe.Migrations
                     b.Property<string>("TransportStationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasIndex("MedicalDeclarationFormId");
 
                     b.ToTable("TravelInfomation");
                 });
@@ -684,8 +672,8 @@ namespace ToKhaiYTe.Migrations
             modelBuilder.Entity("ToKhaiYTe.Models.HistoryOfExposure", b =>
                 {
                     b.HasOne("ToKhaiYTe.Models.MedicalDeclarationForm", "MedicalDeclarationForm")
-                        .WithOne("HistoryOfExposure")
-                        .HasForeignKey("ToKhaiYTe.Models.HistoryOfExposure", "Id")
+                        .WithMany()
+                        .HasForeignKey("MedicalDeclarationFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -702,8 +690,8 @@ namespace ToKhaiYTe.Migrations
             modelBuilder.Entity("ToKhaiYTe.Models.PhatologicalSign", b =>
                 {
                     b.HasOne("ToKhaiYTe.Models.MedicalDeclarationForm", "MedicalDeclarationForm")
-                        .WithOne("PhatologicalSign")
-                        .HasForeignKey("ToKhaiYTe.Models.PhatologicalSign", "Id")
+                        .WithMany()
+                        .HasForeignKey("MedicalDeclarationFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -720,8 +708,8 @@ namespace ToKhaiYTe.Migrations
             modelBuilder.Entity("ToKhaiYTe.Models.TravelInfomation", b =>
                 {
                     b.HasOne("ToKhaiYTe.Models.MedicalDeclarationForm", "MedicalDeclarationForm")
-                        .WithOne("TravelInfomation")
-                        .HasForeignKey("ToKhaiYTe.Models.TravelInfomation", "Id")
+                        .WithMany()
+                        .HasForeignKey("MedicalDeclarationFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

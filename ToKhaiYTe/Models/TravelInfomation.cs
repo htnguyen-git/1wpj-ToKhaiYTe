@@ -5,8 +5,6 @@ namespace ToKhaiYTe.Models
 {
     public class TravelInfomation
     {
-        [ForeignKey("MedicalDeclarationForm")]
-        public int Id { get; set; }
         
         public bool AirPlane { get; set; }
         public bool Ships { get; set; }
@@ -31,6 +29,9 @@ namespace ToKhaiYTe.Models
         public string DestinyLocationProvince { get; set; }
 
         public MedicalDeclarationForm MedicalDeclarationForm { get; set; }
+
+        [ForeignKey("MedicalDeclarationForm")]
+        [Key]
         public int MedicalDeclarationFormId { get; set; }
 
         public bool IsPublished { get; set; }

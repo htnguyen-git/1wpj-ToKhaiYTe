@@ -5,9 +5,10 @@ namespace ToKhaiYTe.Models
 {
     public class PhatologicalSign
     {
-        [ForeignKey("MedicalDeclarationForm")]
-        public int Id { get; set; }
+
         public MedicalDeclarationForm MedicalDeclarationForm { get; set; }
+        [Key]
+        [ForeignKey("MedicalDeclarationForm")]
         public int MedicalDeclarationFormId { get; set; }
         [Required]
         public bool Fever { get; set; }

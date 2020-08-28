@@ -2,20 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ToKhaiYTe.Models;
+using ToKhaiYTe.Models.Service;
 
 namespace ToKhaiYTe.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHealthDeclarationService<MDFViewModel> service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHealthDeclarationService<MDFViewModel> service)
         {
             _logger = logger;
+            this.service = service;
         }
         [HttpGet]
         public IActionResult Index()
         {
+
             return View();
         }
         [HttpPost]
@@ -23,16 +27,20 @@ namespace ToKhaiYTe.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.Status = "Bạn đã nhập tờ khai thành công ";
-                return RedirectToAction("Com");
+                service.SaveHealthDeclarationForm(model);
+                return RedirectToAction("CompleteCreate");
             }
-            return View();
+            
+            return RedirectToAction("FailCreate");
         }
         public IActionResult CompleteCreate()
         {
             return View();
         }
-
+        public IActionResult FailCreate()
+        {
+            return View();
+        }
 
 
         public IActionResult Privacy()

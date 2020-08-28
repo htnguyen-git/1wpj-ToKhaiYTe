@@ -14,8 +14,8 @@ namespace ToKhaiYTe.Models
         [Required]
         public string Fullname { get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        public string DoB { get; set; }
+        [Range(1890,2020)]
+        public int DoB { get; set; }
         [Required]
         public string Gender { get; set; }
         [Required]
@@ -38,16 +38,7 @@ namespace ToKhaiYTe.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public virtual TravelInfomation TravelInfomation { get; set; }
-        public int TravelInfomationId { get; set; }
-
-        public virtual PhatologicalSign PhatologicalSign { get; set; }
-        public int PhatologicalSignId { get; set; }
-
         public string UsedVaccineList { get; set; }
-
-        public HistoryOfExposure HistoryOfExposure { get; set; }
-        public int HistoryOfExposureId { get; set; }
 
         public bool IsPublished { get; set; }
         public bool IsDeleted { get; set; }
