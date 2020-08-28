@@ -1,5 +1,5 @@
 ﻿@model ToKhaiYTe.Models.MDFViewModel
-
+    <link href="~/css/reponsitoryTable.css" rel="stylesheet" />
 
 
 <div class="container">
@@ -31,7 +31,12 @@
             <div class="col-4">
                 <div class="form-group">
                     <label asp-for="DoB" class="control-label"></label>
-                    <input asp-for="DoB" class="form-control" />
+                    <select asp-for="DoB" class="form-control">
+                        @for (int i = 1900; i <= 2020; i++)
+                        {
+                            <option value=@i> @i </option>
+                        }
+                    </select>
                     <span asp-validation-for="DoB" class="text-danger"></span>
                 </div>
             </div>
@@ -151,14 +156,16 @@
                         <label asp-for="DepartureCountry" class="control-label"></label>
                         <select id="DepartureCountry" class="form-control National" asp-for="DepartureCountry">
                         </select>
-
+                        
                         <span asp-validation-for="DepartureCountry" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label asp-for="DepartureProvince" class="control-label"></label>
-                        <input asp-for="DepartureProvince" class="form-control" />
+                        <select id="DepartureProvinceSelect" class="form-control " asp-for="DepartureProvince" >
+                        </select>
+                        <input asp-for="DepartureProvince" class="form-control" id="DepartureProvinceInput" style="display:none" />
 
                         <span asp-validation-for="DepartureProvince" class="text-danger"></span>
                     </div>
@@ -175,13 +182,16 @@
                         <label asp-for="DestinyLocationCountry" class="control-label"></label>
                         <select class="form-control National" asp-for="DestinyLocationCountry" id="DestinyLocationCountry">
                         </select>
+                        
                         <span asp-validation-for="DestinyLocationCountry" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="DestinyLocationProvince" class="control-label"></label>
-                        <input asp-for="DestinyLocationProvince" class="form-control" />
+                        <input asp-for="DestinyLocationProvince" class="form-control" style="display:none" id="DestinyLocationProvinceInput"/>
+                        
+                        <select id="DestinyLocationProvinceSelect" class="form-control" asp-for="DestinyLocationProvince"></select>
                         <span asp-validation-for="DestinyLocationProvince" class="text-danger"></span>
                     </div>
                 </div>
@@ -228,7 +238,7 @@
                     <div class="form-group">
                         <label asp-for="CurrentAddressDistrict" class="control-label"></label>
                         <select id="CurrentAddressDistrict" class="form-control" asp-for="CurrentAddressDistrict">
-                            <option value="" selected disabled>-Chọn-</option>
+                           
                         </select>
                         <span asp-validation-for="CurrentAddressDistrict" class="text-danger"></span>
                     </div>
@@ -237,7 +247,7 @@
                     <div class="form-group">
                         <label asp-for="CurrentAddressWard" class="control-label"></label>
                         <select id="CurrentAddressWard" class="form-control" asp-for="CurrentAddressWard">
-                            <option value="" selected disabled>-Chọn-</option>
+                           
                         </select>
                         <span asp-validation-for="CurrentAddressWard" class="text-danger"></span>
                     </div>
@@ -286,139 +296,157 @@
                     <label><b>Trong vòng 21 ngày (tính đến thời điểm làm thủ tục xuất cảnh, nhập cảnh, quá cảnh) Anh/Chị có thấy xuất hiện dấu hiệu nào sau đây không?</b></label>
                 </div>
             </div>
-            <div class="row">
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th class="col-4">Triệu chứng </th>
-                            <th class="col-1">Có</th>
-                            <th class="col-1">Không</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.Fever)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Fever" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Fever" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.Cough)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Cough" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Cough" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.DifficultOfBreathing)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="DifficultOfBreathing" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="DifficultOfBreathing" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.SoreThroat)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="SoreThroat" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="SoreThroat" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.Vomiting)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Vomiting" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Vomiting" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.Diarrhea)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Diarrhea" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Diarrhea" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.SkinHaemorrhage)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="SkinHaemorrhage" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="SkinHaemorrhage" value="false" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        @Html.DisplayNameFor(model => model.Rash)
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Rash" value="true" />
-                            </td>
-                            <td>
-                                <input type="radio" asp-for="Rash" value="false" />
-                            </td>
-                        </tr>
+            
+            <div>
+                <div class="tableChoiceData ">
+                    <div class="cols-left">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th >Triệu chứng </th>
+                                    <th >Có</th>
+                                    <th >Không</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.Fever)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Fever" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Fever" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.Cough)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Cough" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Cough" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.DifficultOfBreathing)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="DifficultOfBreathing" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="DifficultOfBreathing" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.SoreThroat)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="SoreThroat" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="SoreThroat" value="false" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    </tbody>
-                </table>
+                    <div class="cols-right">
+                        <table class="table table-bordered" >
+                            <thead id="hiddenPartTable">
+                                <tr >
+                                    <th >Triệu chứng </th>
+                                    <th >Có</th>
+                                    <th >Không</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.Vomiting)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Vomiting" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Vomiting" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.Diarrhea)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Diarrhea" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Diarrhea" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.SkinHaemorrhage)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="SkinHaemorrhage" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="SkinHaemorrhage" value="false" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                @Html.DisplayNameFor(model => model.Rash)
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Rash" value="true" />
+                                    </td>
+                                    <td>
+                                        <input type="radio" asp-for="Rash" value="false" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -500,6 +528,7 @@
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/Index.JS"></script>
+@await Html.PartialAsync("_ValidationScriptsPartial") ;
 
 
 

@@ -1,24 +1,39 @@
 ﻿
 var listGate = listGate || {};
+var listNational = listNational || {};
+
 var urlGetListGate = "/Address/GetListGate";
 var urlGetListGender = "/Helper/GetListGender";
 var urlGetListNational = "/address/getlistNational ";
 var urlGetListProvince = "/address/getListProvince";
 var urlGetListDistrict = "/address/getlistdistrict/";
 var urlGetListWard = "/address/getListWard/"
+
+$(function () {
+    getListGate();
+    getListGender();
+    getListNational();
+    drawOptProvinceDeparture();
+    drawOptProvinceDestiny();
+    getListProvinceVN();
+})
+
+
 var getListGate = function () {
     $('#Gate').append('<option value="" disabled selected>-Chọn-</option>')
     $.ajax({
         type: "Get",
         url: urlGetListGate,
         dataType: "json",
-        success: function (response) {       
+        success: function (response) {
             $.each(response.listGate.result, function (i, v) {
                 $('#Gate').append('<option value="' + v.id + '">' + v.gateName + '</option>')
             });
+            
         }
     });
 }
+
 
 var getListGender = function () {
     $("#Gender").append('<option value="" disabled selected>-Chọn-</option>')
@@ -40,116 +55,138 @@ var getListNational = function () {
     $.ajax({
         type: "GET",
         url: urlGetListNational,
-        
+
         dataType: "json",
         success: function (response) {
-            $.each(response.listNational.result, function (i, v) {
 
-                $(".National").append('<option value="' + v.id + '">' + v.commonName + '</option>')
+            let s = "";
+            $.each(response.listNational.result, function (i, v) {
+                if (v.id == 237) {
+                    s += '<option value="' + v.id + '" selected>' + v.commonName + '</option>';
+                }
+                s += '<option value="' + v.id + '" >' + v.commonName + '</option>';
+
             });
+            $(".National").html(s);
         }
     });
 }
 
-
-var getListVNProvince = function () {
+function drawOptProvinceDeparture() {
     $.ajax({
         type: "GET",
         url: urlGetListProvince,
         dataType: "json",
         success: function (response) {
+            let s = "";
             $.each(response.listProvince.result, function (i, v) {
-                
-                $("#vnProvince").append('<option value="' + v.id + '">' + v.name + '</option>')
+                if (v.id == 237) {
+                    s += '<option value="' + v.id + '" selected>' + v.name + '</option>';
+                } else {
+                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                }
             });
+            $("#DepartureProvinceSelect").html(s);
         }
     });
 }
-
-var getListDistrict = function (id) {
+function drawOptProvinceDestiny() {
     $.ajax({
         type: "GET",
-        url: `${urlGetListDistrict}${parseInt(id)}`,
-        data: "name=John&location=Boston",
+        url: urlGetListProvince,
         dataType: "json",
         success: function (response) {
-            console.log(response.listDistrict.result);
+            let s = "";
+            $.each(response.listProvince.result, function (i, v) {
+                if (v.id == 237) {
+                    s += '<option value="' + v.id + '" selected>' + v.name + '</option>';
+                } else {
+                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                }
+            });
+            $("#DestinyLocationProvinceSelect").html(s);
         }
     });
 }
 
 
+// change
 $("#DepartureCountry").change(function (e) {
-    let departureCountry = $("#DepartureCountry").val();
-    if (departureCountry == 237) {
-        $.ajax({
-           
-            type: "GET",
-            url: urlGetListProvince,
-            dataType: "json",
-            success: function (response) {
-                $.each(response.listProvince.result, function (i, v) {
+    IdDeparture = $("#DepartureCountry").val();
+    if (IdDeparture == 237) {
+        $("#DepartureProvinceSelect").show();
+        $("#DepartureProvinceInput").hide();
 
-                    $("#DepartureProvince").append('<option value="' + v.id + '">' + v.name + '</option>')
-                });
-            }
-        });
     }
-
+    else {
+        $("#DepartureProvinceSelect").hide();
+        $("#DepartureProvinceInput").show();
+    }
 });
 
 $("#DestinyLocationCountry").change(function (e) {
-    let departureCountry = $("#DestinyLocationCountry").val();
-    if (departureCountry == 237) {
-       
-        $.ajax({
-            type: "GET",
-            url: urlGetListProvince,
-            dataType: "json",
-            success: function (response) {
-                $.each(response.listProvince.result, function (i, v) {
+    IdDeparture = $("#DestinyLocationCountry").val();
+    if (IdDeparture == 237) {
+        $("#DestinyLocationProvinceSelect").show();
+        $("#DestinyLocationProvinceInput").hide();
 
-                    $("#DestinyLocationProvince").append('<option value="' + v.id + '">' + v.name + '</option>')
-                });
-            }
-        });
+    }
+    else {
+        $("#DestinyLocationProvinceSelect").hide();
+        $("#DestinyLocationProvinceInput").show();
     }
 
 });
 
-$(function () {
-    getListGate();
-    getListGender();
-    getListNational();
-    getListVNProvince();
-});
 
 
-
+var getListProvinceVN = function () {
+    $.ajax({
+        type: "GET",
+        url: urlGetListProvince,
+        
+        dataType: "json",
+        success: function (response) {
+            let s = "<option disabled selected>-Chọn-<option>";
+            $.each(response.listProvince.result, function (i, v) {
+                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+            });
+            $("#vnProvince").html(s);
+        }
+    });
+}
 $("#vnProvince").change(function (e) {
-    let IdProvince = $("#vnProvince").val();
+    let idProvince = $("#vnProvince").val();
     $.ajax({
         type: "GET",
-        url: `${urlGetListDistrict}${parseInt(IdProvince)}`,
+        url: `${urlGetListDistrict}${parseInt(idProvince)}`,
         dataType: "json",
         success: function (response) {
+            let s = "<option disabled selected>-Chọn-<option>";
             $.each(response.listDistrict.result, function (i, v) {
-                $("#CurrentAddressDistrict").append('<option value="' + v.id + '">' + v.name + '</option>')
+
+                s += '<option value="' + v.id + '" >' + v.name + '</option>';
+
             });
+            $("#CurrentAddressDistrict").html(s);
         }
     });
 });
-
 $("#CurrentAddressDistrict").change(function (e) {
-    let IdDistrict = $("#CurrentAddressDistrict").val();
+    let idProvince = $("#CurrentAddressDistrict").val();
     $.ajax({
         type: "GET",
-        url: `${urlGetListWard}${parseInt(IdDistrict)}`,
+        url: `${urlGetListWard}${parseInt(idProvince)}`,
         dataType: "json",
         success: function (response) {
+            let s = "<option disabled selected>-Chọn-<option>";
             $.each(response.listWard.result, function (i, v) {
-                $("#CurrentAddressWard").append('<option value="' + v.id + '">' + v.name + '</option>')
+
+                s += '<option value="' + v.id + '" >' + v.name + '</option>';
+
             });
+            $("#CurrentAddressWard").html(s);
         }
     });
-});
+})
+

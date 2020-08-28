@@ -41,7 +41,8 @@ namespace ToKhaiYTe.Models.Service
                 UsedVaccineList = TClass.UsedVaccineList
             };
             context.MedicalDeclarationForm.Add(MDF);
-            return context.SaveChanges();
+            context.SaveChanges();
+            return MDF.Id;
         }
         public int SaveHistoryOfExposure(MDFViewModel TClass, int MedicalDeclarationId)
         {

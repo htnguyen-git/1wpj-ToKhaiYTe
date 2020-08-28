@@ -19,7 +19,7 @@ namespace ToKhaiYTe.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
+            
             return View();
         }
         [HttpPost]
@@ -27,6 +27,7 @@ namespace ToKhaiYTe.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 service.SaveHealthDeclarationForm(model);
                 return RedirectToAction("CompleteCreate");
             }
@@ -53,9 +54,9 @@ namespace ToKhaiYTe.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Travel()
-        {
-            return View();
-        }
+      
+
+
+
     }
 }

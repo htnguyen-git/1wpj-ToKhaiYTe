@@ -1,0 +1,23 @@
+﻿
+.tableChoiceData {
+    display: flex;
+}
+
+​.cols-left {
+    flex: 1;
+}
+
+​.cols-right {
+    flex: 1;
+}
+
+@media only screen and (max-width: 767px) {
+    .tableChoiceData {
+        display: block;
+    }
+    #hiddenPartTable{
+        display:none;
+    }
+}
+
+
