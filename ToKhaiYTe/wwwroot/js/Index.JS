@@ -27,7 +27,7 @@ var getListGate = function () {
         dataType: "json",
         success: function (response) {
             $.each(response.listGate.result, function (i, v) {
-                $('#Gate').append('<option value="' + v.id + '">' + v.gateName + '</option>')
+                $('#Gate').append('<option value="' + parseInt(v.id) + '">' + v.gateName + '</option>')
             });
             
         }
@@ -51,7 +51,7 @@ var getListGender = function () {
 }
 
 var getListNational = function () {
-    $(".National").append('<option value="" disabled selected>-Chọn-</option>')
+    
     $.ajax({
         type: "GET",
         url: urlGetListNational,
@@ -59,12 +59,12 @@ var getListNational = function () {
         dataType: "json",
         success: function (response) {
 
-            let s = "";
+            let s = "<option disabled selected>-Chọn-</option>";
             $.each(response.listNational.result, function (i, v) {
-                if (v.id == 237) {
-                    s += '<option value="' + v.id + '" selected>' + v.commonName + '</option>';
+                if (parseInt(v.id) == 237) {
+                    s += '<option value="' + parseInt(v.id) + '" selected>' + v.commonName + '</option>';
                 }
-                s += '<option value="' + v.id + '" >' + v.commonName + '</option>';
+                s += '<option value="' + parseInt(v.id) + '" >' + v.commonName + '</option>';
 
             });
             $(".National").html(s);
@@ -78,12 +78,12 @@ function drawOptProvinceDeparture() {
         url: urlGetListProvince,
         dataType: "json",
         success: function (response) {
-            let s = "";
+            let s = "<option disabled selected>-Chọn-</option>";
             $.each(response.listProvince.result, function (i, v) {
-                if (v.id == 237) {
-                    s += '<option value="' + v.id + '" selected>' + v.name + '</option>';
+                if (parseInt(v.id) == 237) {
+                    s += '<option value="' + parseInt(v.id) + '" selected>' + v.name + '</option>';
                 } else {
-                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                    s += '<option value="' + parseInt(v.id) + '" >' + v.name + '</option>';
                 }
             });
             $("#DepartureProvinceSelect").html(s);
@@ -96,12 +96,12 @@ function drawOptProvinceDestiny() {
         url: urlGetListProvince,
         dataType: "json",
         success: function (response) {
-            let s = "";
+            let s = "<option disabled selected>-Chọn-</option>";
             $.each(response.listProvince.result, function (i, v) {
-                if (v.id == 237) {
-                    s += '<option value="' + v.id + '" selected>' + v.name + '</option>';
+                if (parseInt(v.id) == 237) {
+                    s += '<option value="' + parseInt(parseInt(v.id)) + '" selected>' + v.name + '</option>';
                 } else {
-                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                    s += '<option value="' + parseInt(v.id) + '" >' + v.name + '</option>';
                 }
             });
             $("#DestinyLocationProvinceSelect").html(s);
@@ -119,7 +119,7 @@ $("#DepartureCountry").change(function (e) {
 
     }
     else {
-        $("#DepartureProvinceSelect").hide();
+        $("#DepartureProvinceSelect").remove();
         $("#DepartureProvinceInput").show();
     }
 });
@@ -132,7 +132,7 @@ $("#DestinyLocationCountry").change(function (e) {
 
     }
     else {
-        $("#DestinyLocationProvinceSelect").hide();
+        $("#DestinyLocationProvinceSelect").remove();
         $("#DestinyLocationProvinceInput").show();
     }
 
@@ -149,7 +149,7 @@ var getListProvinceVN = function () {
         success: function (response) {
             let s = "<option disabled selected>-Chọn-<option>";
             $.each(response.listProvince.result, function (i, v) {
-                    s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                    s += '<option value="' + parseInt(v.id) + '" >' + v.name + '</option>';
             });
             $("#vnProvince").html(s);
         }
@@ -165,7 +165,7 @@ $("#vnProvince").change(function (e) {
             let s = "<option disabled selected>-Chọn-<option>";
             $.each(response.listDistrict.result, function (i, v) {
 
-                s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                s += '<option value="' + parseInt(v.id) + '" >' + v.name + '</option>';
 
             });
             $("#CurrentAddressDistrict").html(s);
@@ -182,7 +182,7 @@ $("#CurrentAddressDistrict").change(function (e) {
             let s = "<option disabled selected>-Chọn-<option>";
             $.each(response.listWard.result, function (i, v) {
 
-                s += '<option value="' + v.id + '" >' + v.name + '</option>';
+                s += '<option value="' + parseInt(v.id) + '" >' + v.name + '</option>';
 
             });
             $("#CurrentAddressWard").html(s);

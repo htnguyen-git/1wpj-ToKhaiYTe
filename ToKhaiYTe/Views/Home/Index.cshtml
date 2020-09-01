@@ -1,15 +1,16 @@
 ﻿@model ToKhaiYTe.Models.MDFViewModel
     <link href="~/css/reponsitoryTable.css" rel="stylesheet" />
 
-
+<h3>@ViewBag.status</h3>
 <div class="container m-5">
     
     <form asp-action="Index">
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="GateId"></label> @*
+                    <label asp-for="GateId"></label> @* <em>(*)</em>
                     <input asp-for="GateId" class="form-control" />*@
+                    <em class="text-danger">(*)</em>
                     <select id="Gate" class="form-control" asp-for="GateId">
                     </select>
                     <span asp-validation-for="GateId" class="text-danger"></span>
@@ -20,7 +21,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label asp-for="Fullname" class="control-label"></label>
+                    <label asp-for="Fullname" class="control-label"></label><em class="text-danger">(*)</em>
                     <input asp-for="Fullname" class="form-control text-uppercase" />
                     <span asp-validation-for="Fullname" class="text-danger"></span>
                 </div>
@@ -30,7 +31,7 @@
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="DoB" class="control-label"></label>
+                    <label asp-for="DoB" class="control-label"></label><em class="text-danger">(*)</em>
                     <select asp-for="DoB" class="form-control">
                         @for (int i = 1900; i <= 2020; i++)
                         {
@@ -42,7 +43,8 @@
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="Gender" class="control-label"></label> @*
+                    <label asp-for="Gender" class="control-label"></label> <em class="text-danger">(*)</em>
+                    @*
                     <input asp-for="Gender" class="form-control" />*@
                     <select id="Gender" asp-for="Gender" class="form-control"></select>
                     <span asp-validation-for="Gender" class="text-danger"></span>
@@ -50,7 +52,7 @@
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="National" class="control-label"></label> @*
+                    <label asp-for="National" class="control-label"></label><em class="text-danger">(*)</em> @*
                     <input asp-for="National" class="form-control" />*@
                     <select asp-for="National" class="form-control National">
                     </select>
@@ -62,7 +64,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label asp-for="CMND" class="control-label"></label>
+                    <label asp-for="CMND" class="control-label"></label><em class="text-danger">(*)</em>
                     <input asp-for="CMND" class="form-control" />
                     <span asp-validation-for="CMND" class="text-danger"></span>
                 </div>
@@ -79,7 +81,7 @@
         <div>
             <div class="row">
                 <div class="col-2">
-                    <label>Thông tin đi lại </label>
+                    <label>Thông tin đi lại </label><em class="text-danger">(*)</em>
                 </div>
                 <div class="col-2">
                     <div class="form-group form-check">
@@ -132,14 +134,14 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="DepartureDate" class="control-label"></label>
+                        <label asp-for="DepartureDate" class="control-label"></label><em class="text-danger">(*)</em>
                         <input asp-for="DepartureDate" class="form-control" />
                         <span asp-validation-for="DepartureDate" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="EntryDate" class="control-label"></label>
+                        <label asp-for="EntryDate" class="control-label"></label><em class="text-danger">(*)</em>
                         <input asp-for="EntryDate" class="form-control" />
                         <span asp-validation-for="EntryDate" class="text-danger"></span>
                     </div>
@@ -153,8 +155,9 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="DepartureCountry" class="control-label"></label>
+                        <label asp-for="DepartureCountry" class="control-label"></label><em class="text-danger">(*)</em>
                         <select id="DepartureCountry" class="form-control National" asp-for="DepartureCountry">
+                            <option disabled selected>-Chọn-</option>
                         </select>
                         
                         <span asp-validation-for="DepartureCountry" class="text-danger"></span>
@@ -162,8 +165,9 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group" >
-                        <label asp-for="DepartureProvince" class="control-label"></label>
-                        <select id="DepartureProvinceSelect" class="form-control " asp-for="DepartureProvince" >
+                        <label asp-for="DepartureProvince" class="control-label"></label><em class="text-danger">(*)</em>
+                        <select id="DepartureProvinceSelect" class="form-control " asp-for="DepartureProvince">
+                            <option disabled selected>-Chọn-</option>
                         </select>
                         <input asp-for="DepartureProvince" class="form-control" id="DepartureProvinceInput" style="display:none" />
 
@@ -179,8 +183,9 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="DestinyLocationCountry" class="control-label"></label>
+                        <label asp-for="DestinyLocationCountry" class="control-label"></label><em class="text-danger">(*)</em>
                         <select class="form-control National" asp-for="DestinyLocationCountry" id="DestinyLocationCountry">
+                            <option disabled selected>-Chọn-</option>
                         </select>
                         
                         <span asp-validation-for="DestinyLocationCountry" class="text-danger"></span>
@@ -188,10 +193,13 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="DestinyLocationProvince" class="control-label"></label>
+                        <label asp-for="DestinyLocationProvince" class="control-label"></label><em class="text-danger">(*)</em>
+                        <select id="DestinyLocationProvinceSelect" class="form-control" asp-for="DestinyLocationProvince">
+                            <option disabled selected>-Chọn-</option>
+                        </select>
                         <input asp-for="DestinyLocationProvince" class="form-control" style="display:none" id="DestinyLocationProvinceInput"/>
                         
-                        <select id="DestinyLocationProvinceSelect" class="form-control" asp-for="DestinyLocationProvince"></select>
+                        
                         <span asp-validation-for="DestinyLocationProvince" class="text-danger"></span>
                     </div>
                 </div>
@@ -226,7 +234,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <label asp-for="CurrentAddressProvince" class="control-label"></label>
+                        <label asp-for="CurrentAddressProvince" class="control-label"></label><em class="text-danger">(*)</em>
                         <select id="vnProvince" class="form-control" asp-for="CurrentAddressProvince">
                             <option value="" selected disabled>-Chọn-</option>
                         </select>
@@ -236,7 +244,7 @@
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        <label asp-for="CurrentAddressDistrict" class="control-label"></label>
+                        <label asp-for="CurrentAddressDistrict" class="control-label"></label><em class="text-danger">(*)</em>
                         <select id="CurrentAddressDistrict" class="form-control" asp-for="CurrentAddressDistrict">
                            
                         </select>
@@ -245,7 +253,7 @@
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        <label asp-for="CurrentAddressWard" class="control-label"></label>
+                        <label asp-for="CurrentAddressWard" class="control-label"></label><em class="text-danger">(*)</em>
                         <select id="CurrentAddressWard" class="form-control" asp-for="CurrentAddressWard">
                            
                         </select>
@@ -256,7 +264,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label asp-for="CurrentAddressStreet" class="control-label"></label>
+                        <label asp-for="CurrentAddressStreet" class="control-label"></label><em class="text-danger">(*)</em>
                         <input asp-for="CurrentAddressStreet" class="form-control" />
                         <span asp-validation-for="CurrentAddressStreet" class="text-danger"></span>
                     </div>
@@ -271,7 +279,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <label asp-for="PhoneNumber" class="control-label"></label><em class="text-danger">(*)</em>
                         <input asp-for="PhoneNumber" class="form-control" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
@@ -303,7 +311,7 @@
                         <table class="table table-bordered" style="width:500px">
                             <thead>
                                 <tr>
-                                    <th >Triệu chứng </th>
+                                    <th>Triệu chứng </th>
                                     <th width="70">Có</th>
                                     <th width="70">Không</th>
                                 </tr>
@@ -314,7 +322,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.Fever)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -323,13 +331,15 @@
                                     <td>
                                         <input type="radio" asp-for="Fever" value="false" />
                                     </td>
+
                                 </tr>
+
                                 <tr>
                                     <td>
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.Cough)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -344,7 +354,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.DifficultOfBreathing)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -359,7 +369,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.SoreThroat)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -374,10 +384,10 @@
                     </div>
 
                     <div class="cols-right">
-                        <table class="table table-bordered" style="width:500px" >
+                        <table class="table table-bordered" style="width:500px">
                             <thead id="hiddenPartTable">
-                                <tr >
-                                    <th >Triệu chứng </th>
+                                <tr>
+                                    <th>Triệu chứng </th>
                                     <th width="70">Có</th>
                                     <th width="70">Không</th>
                                 </tr>
@@ -388,7 +398,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.Vomiting)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -403,7 +413,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.Diarrhea)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -418,7 +428,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.SkinHaemorrhage)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -433,7 +443,7 @@
                                         <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 @Html.DisplayNameFor(model => model.Rash)
-                                            </label>
+                                            </label><em class="text-danger">(*)</em>
                                         </div>
                                     </td>
                                     <td>
@@ -445,8 +455,18 @@
                                 </tr>
                             </tbody>
                         </table>
+
                     </div>
+
                 </div>
+                <span asp-validation-for="Fever" class="text-danger"></span>
+                <span asp-validation-for="Cough" class="text-danger"></span>
+                <span asp-validation-for="DifficultOfBreathing" class="text-danger"></span>
+                <span asp-validation-for="SoreThroat" class="text-danger"></span>
+                <span asp-validation-for="Vomiting" class="text-danger"></span>
+                <span asp-validation-for="Diarrhea" class="text-danger"></span>
+                <span asp-validation-for="SkinHaemorrhage" class="text-danger"></span>
+                <span asp-validation-for="Rash" class="text-danger"></span>
             </div>
         </div>
 
@@ -474,7 +494,7 @@
 
         <div class="row">
             <div class="col-12">
-                <label><b>Lịch sử phơi nhiễm: Trong vòng 21 ngày qua, Anh/Chị có</b></label>
+                <label><b>Lịch sử phơi nhiễm: Trong vòng 21 ngày qua, Anh/Chị có</b></label><em class="text-danger">(*)</em>
             </div>
         </div>
 
@@ -493,7 +513,7 @@
                             <div class="form-group form-check">
                                 <label class="form-check-label">
                                     @Html.DisplayNameFor(model => model.ContactToAnimal)
-                                </label>
+                                </label><em class="text-danger">(*)</em>
                             </div>
                         </td>
                         <td>
@@ -508,7 +528,7 @@
                             <div class="form-group form-check">
                                 <label class="form-check-label">
                                     @Html.DisplayNameFor(model => model.ContactWithSickPeople)
-                                </label>
+                                </label><em class="text-danger">(*)</em>
                             </div>
                         </td>
                         <td>
