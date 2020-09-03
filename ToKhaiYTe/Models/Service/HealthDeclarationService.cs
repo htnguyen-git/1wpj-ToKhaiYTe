@@ -115,16 +115,16 @@ namespace ToKhaiYTe.Models.Service
                    orderby m.Id descending
                    select new ManagerIndexViewModel
                    {
-                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                       
                        Gate = g.GateName,
                        Gender = m.Gender,
                        MedicalDelcarationFormId = m.Id,
                        Name = m.Fullname,
                        National = addressService.GetNameById(m.National, 1),
                        PhoneNumber = m.PhoneNumber,
-                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                       /*Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
                        Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
-
+                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),*/
                    };
                        
             

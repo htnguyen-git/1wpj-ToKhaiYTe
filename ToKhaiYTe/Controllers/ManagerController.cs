@@ -23,5 +23,10 @@ namespace ToKhaiYTe.Controllers
             var model = healthDeclarationService.GetsManagerIndexViewModel();
             return View(model);
         }
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="jumbotron text-center">
+        <h1>Quản lý danh sách tờ khai</h1>
+        
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul >
+                    <li>@Html.ActionLink("Danh sách mới nhất","Index","Manager")</li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                @RenderBody()
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
