@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ToKhaiYTe.Models.ViewModel;
 
 namespace ToKhaiYTe.Models.Service
 {
-    public interface IHealthDeclarationService<T> where T:class
+    public interface IHealthDeclarationService
     {
-        int SaveMedicalDeclaration(T TClass);
-        int SaveTravelInfomation(T TClass, int MedicalDeclarationId);
-        int SavePhatologicalSign(T TClass, int MedicalDeclarationId);
-        int SaveHistoryOfExposure(T TClass , int MedicalDeclarationId);
-        int SaveHealthDeclarationForm(T TClass);
+        int SaveMedicalDeclaration(MDFViewModel TClass);
+        int SaveTravelInfomation(MDFViewModel TClass, int MedicalDeclarationId);
+        int SavePhatologicalSign(MDFViewModel TClass, int MedicalDeclarationId);
+        int SaveHistoryOfExposure(MDFViewModel TClass , int MedicalDeclarationId);
+        int SaveHealthDeclarationForm(MDFViewModel TClass);
+        IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel();
     }
 }

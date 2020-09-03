@@ -31,7 +31,7 @@ namespace ToKhaiYTe
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddScoped<IAddressRepository, AddressRepository>();
-            services.AddScoped<IHealthDeclarationService<MDFViewModel>, HealthDeclarationService>();
+            services.AddScoped<IHealthDeclarationService, HealthDeclarationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

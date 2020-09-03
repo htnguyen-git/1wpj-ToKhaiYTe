@@ -32,6 +32,19 @@ namespace ToKhaiYTe.Models.AddressInfo
             
         }
 
+        public  string GetNameById(string id, int sortOrder)
+        {
+            return sortOrder switch
+            {
+                1 => context.Country.SingleOrDefault(c => c.Id == int.Parse(id)).CommonName,
+                2 => context.Province.SingleOrDefault(p => p.Id == int.Parse(id)).Name,
+                3 => context.District.SingleOrDefault(d => d.Id == int.Parse(id)).Name,
+                4 => context.Ward.SingleOrDefault(w => w.Id == int.Parse(id)).Name,
+                
+                _ => null,
+            };
+        }
+
         public async Task<IEnumerable<Province>> GetProvince()
         {
             return await context.Province.ToListAsync();

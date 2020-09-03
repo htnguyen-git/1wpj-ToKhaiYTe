@@ -9,9 +9,9 @@ namespace ToKhaiYTe.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IHealthDeclarationService<MDFViewModel> service;
+        private readonly IHealthDeclarationService service;
 
-        public HomeController(ILogger<HomeController> logger, IHealthDeclarationService<MDFViewModel> service)
+        public HomeController(ILogger<HomeController> logger, IHealthDeclarationService service)
         {
             _logger = logger;
             this.service = service;
