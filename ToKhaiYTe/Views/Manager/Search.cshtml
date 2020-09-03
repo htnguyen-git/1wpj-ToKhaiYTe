@@ -1,0 +1,52 @@
+﻿@model ToKhaiYTe.Models.ViewModel.ManagerSearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+
+<hr />
+
+<form asp-action="Search">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="SearchString" class="control-label"></label>
+        <input asp-for="SearchString" class="form-control" />
+        <span asp-validation-for="SearchString" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Province" /> @Html.DisplayNameFor(model => model.Province)
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="District" /> @Html.DisplayNameFor(model => model.District)
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Ward" /> @Html.DisplayNameFor(model => model.Ward)
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Name" /> @Html.DisplayNameFor(model => model.Name)
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="PhoneNumber" /> @Html.DisplayNameFor(model => model.PhoneNumber)
+        </label>
+    </div>
+
+
+</form>
+
+
+

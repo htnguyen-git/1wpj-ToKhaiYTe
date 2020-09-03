@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToKhaiYTe.Models;
 using ToKhaiYTe.Models.Service;
+using ToKhaiYTe.Models.ViewModel;
 
 namespace ToKhaiYTe.Controllers
 {
@@ -28,5 +29,13 @@ namespace ToKhaiYTe.Controllers
         {
             return View();
         }
+        /*[HttpPost]
+        public IActionResult Search(ManagerSearchViewModel model)
+        {
+            if (true)
+            {
+
+            }
+        }*/
     }
 }
