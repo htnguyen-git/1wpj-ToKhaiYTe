@@ -14,5 +14,6 @@ namespace ToKhaiYTe.Models.Service
         int SaveHistoryOfExposure(MDFViewModel TClass , int MedicalDeclarationId);
         int SaveHealthDeclarationForm(MDFViewModel TClass);
         IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel();
+        ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId);
     }
 }

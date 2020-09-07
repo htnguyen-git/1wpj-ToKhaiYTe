@@ -6,23 +6,23 @@ namespace ToKhaiYTe.Models
     {
 
         [Required]
-        [Display(Name = "Cửa khẩu (*)")]
+        [Display(Name = "Cửa khẩu ")]
         public int GateId { get; set; }
         [Required]
-        [Display(Name = "Họ tên (*)")]
+        [Display(Name = "Họ tên ")]
         public string Fullname { get; set; }
         [Required]
-        [Display(Name = "Năm sinh(*)")]
+        [Display(Name = "Năm sinh")]
         [Range(1890,2020)]
         public int DoB { get; set; }
         [Required]
-        [Display(Name = "Giới tính(*)")]
+        [Display(Name = "Giới tính ")]
         public string Gender { get; set; }
         [Required]
-        [Display(Name = "Quốc tịch(*)")]
+        [Display(Name = "Quốc tịch ")]
         public string National { get; set; }
         [Required]
-        [Display(Name = "Sổ hộ chiếu hoặc giấy thông hành hợp pháp khác(*)")]
+        [Display(Name = "Sổ hộ chiếu hoặc giấy thông hành hợp pháp khác ")]
         public string CMND { get; set; }
 
 
@@ -44,23 +44,23 @@ namespace ToKhaiYTe.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Ngày khởi hành(*)")]
+        [Display(Name = "Ngày khởi hành ")]
         public string DepartureDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Ngày nhập cảnh(*)")]
+        [Display(Name = "Ngày nhập cảnh ")]
         public string EntryDate { get; set; }
         [Required]
-        [Display(Name = "Quốc gia / vùng lãnh thổ đi(*)")]
+        [Display(Name = "Quốc gia / vùng lãnh thổ đi ")]
         public string DepartureCountry { get; set; }
         [Required]
-        [Display(Name = "Tỉnh đi(*)")]
+        [Display(Name = "Tỉnh đi ")]
         public string DepartureProvince { get; set; }
         [Required]
-        [Display(Name = "Quốc gia / vùng lãnh thổ đến(*)")]
+        [Display(Name = "Quốc gia / vùng lãnh thổ đến ")]
         public string DestinyLocationCountry { get; set; }
         [Required]
-        [Display(Name = "Tỉnh đến(*)")]
+        [Display(Name = "Tỉnh đến ")]
         public string DestinyLocationProvince { get; set; }
 
 
@@ -69,22 +69,22 @@ namespace ToKhaiYTe.Models
 
 
         [Required]
-        [Display(Name = "Trong vòng 21 ngày qua, Anh/Chị có đến quốc gia/vùng lãnh thổ nào?(*)")]
+        [Display(Name = "Trong vòng 21 ngày qua, Anh/Chị có đến quốc gia/vùng lãnh thổ nào? ")]
         public string ListCountryhasGoneThrough { get; set; }
         [Required]
-        [Display(Name = "Tỉnh thành(*) ")]
+        [Display(Name = "Tỉnh thành  ")]
         public string CurrentAddressProvince { get; set; }
         [Required]
-        [Display(Name = "Quận / huyện(*) ")]
+        [Display(Name = "Quận / huyện  ")]
         public string CurrentAddressDistrict { get; set; }
         [Required]
-        [Display(Name = "Phường / xã (*)")]
+        [Display(Name = "Phường / xã  ")]
         public string CurrentAddressWard { get; set; }
         [Required]
-        [Display(Name = "Địa chỉ nơi ở tại Việt Nam(*) ")]
+        [Display(Name = "Địa chỉ nơi ở tại Việt Nam  ")]
         public string CurrentAddressStreet { get; set; }
         [Required]
-        [Display(Name = "Điện thoại (*)")]
+        [Display(Name = "Điện thoại  ")]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         
@@ -93,28 +93,28 @@ namespace ToKhaiYTe.Models
 
         // Dau hieu benh ly
         [Required]
-        [Display(Name = "Sốt(*)")]
+        [Display(Name = "Sốt ")]
         public bool Fever { get; set; }
         [Required]
-        [Display(Name = "Ho(*)")]
+        [Display(Name = "Ho ")]
         public bool Cough { get; set; }
         [Required]
-        [Display(Name = "Khó thở(*)")]
+        [Display(Name = "Khó thở ")]
         public bool DifficultOfBreathing { get; set; }
         [Required]
-        [Display(Name = "Đau họng(*)")]
+        [Display(Name = "Đau họng ")]
         public bool SoreThroat { get; set; }
         [Required]
-        [Display(Name = "Nôn / buồn nôn(*)")]
+        [Display(Name = "Nôn / buồn nôn ")]
         public bool Vomiting { get; set; }
         [Required]
-        [Display(Name = "Tiêu chảy(*)")]
+        [Display(Name = "Tiêu chảy ")]
         public bool Diarrhea { get; set; }
         [Required]
-        [Display(Name = "Xuất huyết ngoài da(*)")]
+        [Display(Name = "Xuất huyết ngoài da ")]
         public bool SkinHaemorrhage { get; set; }
         [Required]
-        [Display(Name = "Nổi ban ngoài da(*)")]
+        [Display(Name = "Nổi ban ngoài da ")]
         public bool Rash { get; set; }
 
 
@@ -128,10 +128,10 @@ namespace ToKhaiYTe.Models
 
         //Lich su phoi nhiem
         [Required]
-        [Display(Name = "Đến trang trại chăn nuôi / chợ buôn bán động vật sống / cơ sở giết mổ động vật / tiếp xúc động vật(*)")]
+        [Display(Name = "Đến trang trại chăn nuôi / chợ buôn bán động vật sống / cơ sở giết mổ động vật / tiếp xúc động vật ")]
         public bool ContactToAnimal { get; set; }
         [Required]
-        [Display(Name = "Tiếp xúc gần (<2m) với người mắc bệnh viêm đường hô hấp do nCoV(*)")]
+        [Display(Name = "Tiếp xúc gần (<2m) với người mắc bệnh viêm đường hô hấp do nCoV ")]
         public bool ContactWithSickPeople { get; set; }
 
 

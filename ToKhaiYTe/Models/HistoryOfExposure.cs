@@ -9,7 +9,9 @@ namespace ToKhaiYTe.Models
         [Key]
         [ForeignKey("MedicalDeclarationForm")]
         public int MedicalDeclarationFormId { get; set; }
+        [Display(Name = "Có tiếp xúc với động vật")]
         public bool ContactToAnimal { get; set; }
+        [Display(Name = "Có tiếp xúc với người bệnh")]
         public bool ContactWithSickPeople { get; set; }
         public virtual MedicalDeclarationForm MedicalDeclarationForm { get; set; }
         

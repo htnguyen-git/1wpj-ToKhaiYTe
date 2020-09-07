@@ -1,0 +1,274 @@
+﻿
+@model ToKhaiYTe.Models.ViewModel.ManagerFullInfoViewModel
+@{
+    ViewData["Title"] = "GetFullInfo";
+}
+@if (Model is null)
+{
+    <h1>@ViewBag.Status</h1>
+}
+else
+{
+    <h1>Thông tin đầy đủ của : @Model.MedicalDeclarationForm.Fullname</h1>
+    <hr />
+    
+    <div class="row">
+        <h4>Thông tin cá nhân</h4>
+
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.Fullname)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.Fullname)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.DoB)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.DoB)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.Gender)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.Gender)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.National)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.National)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.CMND)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.CMND)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.ListCountryhasGoneThrough)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.ListCountryhasGoneThrough)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.CurrentAddressProvince)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.CurrentAddressProvince)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.CurrentAddressDistrict)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.CurrentAddressDistrict)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.CurrentAddressWard)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.CurrentAddressWard)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.CurrentAddressStreet)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.CurrentAddressStreet)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.PhoneNumber)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.PhoneNumber)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.Email)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.Email)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.MedicalDeclarationForm.UsedVaccineList)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.MedicalDeclarationForm.UsedVaccineList)
+            </dd>
+
+        </dl>
+    </div>
+    // thông tin bệnh lý
+    <div class=" row">
+        <div>
+            <h4>Thông tin bệnh lý</h4>
+            <hr />
+            <dl class="row">
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.Fever)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.Fever)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.Cough)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.Cough)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.DifficultOfBreathing)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.DifficultOfBreathing)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.SoreThroat)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.SoreThroat)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.Vomiting)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.Vomiting)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.Diarrhea)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.Diarrhea)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.SkinHaemorrhage)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.SkinHaemorrhage)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.PhatologicalSign.Rash)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.PhatologicalSign.Rash)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+
+
+    // thông tin di chuyển
+    <div class="row">
+        <div>
+            <h4>Thông tin di chuyển</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.AirPlane)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.AirPlane)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.Ships)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.Ships)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.Car)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.Car)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.AnotherVerhicle)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.AnotherVerhicle)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.TransportStationNumber)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.TransportStationNumber)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.SeatNumber)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.SeatNumber)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.DepartureDate)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.DepartureDate)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.EntryDate)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.EntryDate)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.DepartureCountry)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.DepartureCountry)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.DepartureProvince)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.DepartureProvince)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.DestinyLocationCountry)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.DestinyLocationCountry)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.TravelInfomation.DestinyLocationProvince)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.TravelInfomation.DestinyLocationProvince)
+                </dd>
+                
+
+            </dl>
+        </div>
+    </div>
+
+    // lịch sử tiếp xúc
+    <div class="row">
+        <div>
+            <h4>Lịch sử tiếp xúc</h4>
+            <hr />
+            <dl class="row">
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.HistoryOfExposure.ContactToAnimal)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.HistoryOfExposure.ContactToAnimal)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.HistoryOfExposure.ContactWithSickPeople)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.HistoryOfExposure.ContactWithSickPeople)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+
+}
+
+
+

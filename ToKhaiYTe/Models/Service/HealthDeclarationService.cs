@@ -129,5 +129,73 @@ namespace ToKhaiYTe.Models.Service
                        
             
         }
+
+        public ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId)
+        {
+            return new ManagerFullInfoViewModel()
+            {
+                HistoryOfExposure = GetHistoryOfExposure(MedicalDeclarationId),
+                MedicalDeclarationForm = GetMedicalDeclarationForm(MedicalDeclarationId),
+                PhatologicalSign = GetPhatologicalSign(MedicalDeclarationId),
+                TravelInfomation = GetTravelInfomation(MedicalDeclarationId)
+            };
+        }
+
+
+
+
+        #region private
+        private MedicalDeclarationForm GetMedicalDeclarationForm(int MedicalDeclarationFormId)
+        {
+            return (from m in context.MedicalDeclarationForm
+                        where m.Id == MedicalDeclarationFormId
+                        select new MedicalDeclarationForm
+                        {
+                            Id = MedicalDeclarationFormId,
+                            Fullname = m.Fullname,
+                            DoB = m.DoB,
+                            Gender = m.Gender,
+                            National = addressService.GetNameById(m.National, 1),
+                            CMND = m.CMND,
+                            ListCountryhasGoneThrough = m.ListCountryhasGoneThrough,
+                            CurrentAddressDistrict = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                            CurrentAddressProvince = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                            CurrentAddressWard = addressService.GetNameById(m.CurrentAddressWard, 4),
+                            CurrentAddressStreet = m.CurrentAddressStreet,
+                            PhoneNumber = m.PhoneNumber,
+                            Email = m.Email,
+                            UsedVaccineList = m.UsedVaccineList
+                        }).FirstOrDefault();
+        }
+        private HistoryOfExposure GetHistoryOfExposure(int MedicalDeclarationFormId)
+        {
+            return context.HistoryOfExposure.FirstOrDefault(h => h.MedicalDeclarationFormId == MedicalDeclarationFormId);
+        }
+        private PhatologicalSign GetPhatologicalSign(int MedicalDeclarationFormId)
+        {
+            return context.PhatologicalSign.FirstOrDefault(p => p.MedicalDeclarationFormId == MedicalDeclarationFormId);
+        }
+        private TravelInfomation GetTravelInfomation(int MedicalDeclarationFormId)
+        {
+            return (from t in context.TravelInfomation
+                    where t.MedicalDeclarationFormId == MedicalDeclarationFormId
+                    select new TravelInfomation
+                    {
+                        AirPlane = t.AirPlane,
+                        Car = t.Car,
+                        Ships = t.Ships,
+                        AnotherVerhicle = t.AnotherVerhicle,
+                        TransportStationNumber = t.TransportStationNumber,
+                        SeatNumber = t.SeatNumber,
+                        DepartureDate = t.DepartureDate,
+                        EntryDate = t.EntryDate,
+                        DepartureCountry = addressService.GetNameById(t.DepartureCountry,1),
+                        DestinyLocationCountry = addressService.GetNameById(t.DestinyLocationCountry,1),
+                        DepartureProvince = t.DepartureProvince,
+                        DestinyLocationProvince = t.DestinyLocationProvince
+                        
+                    }).FirstOrDefault();
+        }
+        #endregion
     }
 }

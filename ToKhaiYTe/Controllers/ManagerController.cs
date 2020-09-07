@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using ToKhaiYTe.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using ToKhaiYTe.Models.Service;
 using ToKhaiYTe.Models.ViewModel;
 
@@ -24,6 +18,16 @@ namespace ToKhaiYTe.Controllers
             var model = healthDeclarationService.GetsManagerIndexViewModel();
             return View(model);
         }
+        public IActionResult GetFullInfo(int Id)
+        {
+            ManagerFullInfoViewModel data = healthDeclarationService.GetInfo(Id);
+            if (data.MedicalDeclarationForm is null)
+            {
+                ViewBag.Status = $"Không tìm thấy thông tin của id {Id}";
+                return View();
+            }
+            return View(data);
+        }
         [HttpGet]
         public IActionResult Search()
         {
@@ -37,5 +41,7 @@ namespace ToKhaiYTe.Controllers
 
             }
         }*/
+        
+        
     }
 }
