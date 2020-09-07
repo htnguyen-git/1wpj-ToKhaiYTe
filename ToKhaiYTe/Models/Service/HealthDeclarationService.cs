@@ -122,9 +122,9 @@ namespace ToKhaiYTe.Models.Service
                        Name = m.Fullname,
                        National = addressService.GetNameById(m.National, 1),
                        PhoneNumber = m.PhoneNumber,
-                       /*Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
                        Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
-                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),*/
+                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
                    };
                        
             

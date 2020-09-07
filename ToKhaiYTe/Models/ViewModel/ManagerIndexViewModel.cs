@@ -17,14 +17,14 @@ namespace ToKhaiYTe.Models.ViewModel
         [Display(Name = "Quốc tịch")]
         public string National { get; set; }
 
-        /*[Display(Name = "Thành phố")]
+        [Display(Name = "Thành phố")]
         public string Province { get; set; }
 
         [Display(Name = "Quận / huyện")]
         public string District { get; set; }
 
         [Display(Name = "Phường/ xã")]
-        public string Ward { get; set; }*/
+        public string Ward { get; set; }
 
     }
 }
