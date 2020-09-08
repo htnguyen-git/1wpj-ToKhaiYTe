@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using ToKhaiYTe.Models.Service;
 using ToKhaiYTe.Models.ViewModel;
 
 namespace ToKhaiYTe.Controllers
 {
-    /*[Authorize]*/
+    [Authorize]
     public class ManagerController : Controller
     {
         private readonly IHealthDeclarationService healthDeclarationService;

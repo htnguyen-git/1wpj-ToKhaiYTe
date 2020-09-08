@@ -248,7 +248,7 @@ namespace ToKhaiYTe.Models.Service
         #region private getSearchList
         private IEnumerable<ManagerIndexViewModel> SearchByProvince(string SearchString)
         {
-
+           
             var province = GetIdByName(SearchString, 1);
             if (province ==-1)
             {
@@ -372,9 +372,11 @@ namespace ToKhaiYTe.Models.Service
                     var data= context.Province.FirstOrDefault(p => p.Name == Name);
                     return data == null ? -1 : data.Id;
                 case 2:
-                    return context.District.FirstOrDefault(d => d.Name == Name).Id;
+                    var districtdata = context.District.FirstOrDefault(d => d.Name == Name);
+                    return districtdata == null ? -1 : districtdata.Id;
                 case 3:
-                    return context.Ward.FirstOrDefault(w => w.Name == Name).Id;
+                    var wardData = context.Ward.FirstOrDefault(w => w.Name == Name);
+                    return wardData == null ? -1 : wardData.Id;
                 default:
                     return -1;
             }
