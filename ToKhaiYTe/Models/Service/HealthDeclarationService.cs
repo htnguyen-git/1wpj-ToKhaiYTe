@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ToKhaiYTe.Models.AddressInfo;
 using ToKhaiYTe.Models.ViewModel;
 
@@ -107,25 +105,25 @@ namespace ToKhaiYTe.Models.Service
             return context.SaveChanges();
         }
 
-        public IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel()
+        public  IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel()
         {
-            return from m in context.MedicalDeclarationForm
-                   join g in context.Gate on m.GateId equals g.Id
-                   where (m.IsDeleted == false && m.IsPublished == true)
-                   orderby m.Id descending
-                   select new ManagerIndexViewModel
-                   {
-                       
-                       Gate = g.GateName,
-                       Gender = m.Gender,
-                       MedicalDelcarationFormId = m.Id,
-                       Name = m.Fullname,
-                       National = addressService.GetNameById(m.National, 1),
-                       PhoneNumber = m.PhoneNumber,
-                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
-                       Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
-                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
-                   };
+            return (from m in context.MedicalDeclarationForm
+                          join g in context.Gate on m.GateId equals g.Id
+                          where (m.IsDeleted == false && m.IsPublished == true)
+                          orderby m.Id descending
+                          select new ManagerIndexViewModel
+                          {
+
+                              Gate = g.GateName,
+                              Gender = m.Gender,
+                              MedicalDelcarationFormId = m.Id,
+                              Name = m.Fullname,
+                              National = addressService.GetNameById(m.National, 1),
+                              PhoneNumber = m.PhoneNumber,
+                              Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                              Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                              District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                          });
                        
             
         }
@@ -141,10 +139,7 @@ namespace ToKhaiYTe.Models.Service
             };
         }
 
-
-
-
-        #region private
+        #region private GetInfo
         private MedicalDeclarationForm GetMedicalDeclarationForm(int MedicalDeclarationFormId)
         {
             return (from m in context.MedicalDeclarationForm
@@ -195,6 +190,62 @@ namespace ToKhaiYTe.Models.Service
                         DestinyLocationProvince = t.DestinyLocationProvince
                         
                     }).FirstOrDefault();
+        }
+
+
+        #endregion
+
+        public IEnumerable<ManagerIndexViewModel> Search(ManagerSearchViewModel modelToSearch)
+        {
+            List<ManagerIndexViewModel> data = new List<ManagerIndexViewModel>();
+            if (modelToSearch.Province)
+            {
+                data.AddRange(SearchByProvince(modelToSearch.SearchString));
+            }
+            return data;
+
+        }
+
+        #region private getSearchList
+        private IEnumerable<ManagerIndexViewModel> SearchByProvince(string SearchString)
+        {
+            var province = GetIdByName(SearchString,1).ToString();
+            return from m in context.MedicalDeclarationForm
+                   join g in context.Gate on m.GateId equals g.Id
+                   where (m.IsDeleted == false && m.IsPublished == true && m.CurrentAddressProvince == province)
+                   orderby m.Id descending
+                   select new ManagerIndexViewModel
+                   {
+                       Gate = g.GateName,
+                       Gender = m.Gender,
+                       MedicalDelcarationFormId = m.Id,
+                       Name = m.Fullname,
+                       National = addressService.GetNameById(m.National, 1),
+                       PhoneNumber = m.PhoneNumber,
+                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                       Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                   };
+        }
+        /// <summary>
+        /// order 1: Province, 2: District, 3: Ward
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        private int GetIdByName(string Name,int order)
+        {
+            switch (order)
+            {
+                case 1:
+                    return context.Province.FirstOrDefault(p => p.Name == Name).Id;
+                case 2:
+                    return context.District.FirstOrDefault(d => d.Name == Name).Id;
+                case 3:
+                    return context.Ward.FirstOrDefault(w => w.Name == Name).Id;
+                default:
+                    return -1;
+            }
         }
         #endregion
     }

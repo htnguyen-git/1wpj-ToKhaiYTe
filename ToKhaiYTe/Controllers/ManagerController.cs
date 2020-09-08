@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using ToKhaiYTe.Models.Service;
 using ToKhaiYTe.Models.ViewModel;
 
@@ -33,15 +34,21 @@ namespace ToKhaiYTe.Controllers
         {
             return View();
         }
-        /*[HttpPost]
+        [HttpPost]
         public IActionResult Search(ManagerSearchViewModel model)
         {
-            if (true)
+            List<ManagerIndexViewModel> list = new List<ManagerIndexViewModel>();
+            if (ModelState.IsValid)
             {
-
+                if (model.Province)
+                {
+                    list.AddRange(healthDeclarationService.Search(model));
+                }
+                
             }
-        }*/
-        
-        
+            return View("Index", list);
+        }
+
+
     }
 }

@@ -15,5 +15,7 @@ namespace ToKhaiYTe.Models.Service
         int SaveHealthDeclarationForm(MDFViewModel TClass);
         IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel();
         ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId);
+        
+        IEnumerable<ManagerIndexViewModel> Search(ManagerSearchViewModel modelToSearch);
     }
 }
