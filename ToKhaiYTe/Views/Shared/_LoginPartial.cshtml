@@ -1,0 +1,11 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h5>Xin chào  @UserManager.GetUserName(User) </h5>   
+    @Html.ActionLink("Đăng xuất", "LogOut", "Account")
+}
