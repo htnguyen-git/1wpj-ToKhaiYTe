@@ -40,13 +40,16 @@ namespace ToKhaiYTe.Controllers
             List<ManagerIndexViewModel> list = new List<ManagerIndexViewModel>();
             if (ModelState.IsValid)
             {
-                if (model.Province)
-                {
-                    list.AddRange(healthDeclarationService.Search(model));
-                }
+                 list.AddRange(healthDeclarationService.Search(model));
                 
             }
-            return View("Index", list);
+            if (list != null)
+            {
+                
+                return View("Index", list);
+            }
+            ViewBag.Status = $"Hãy kiểm tra lại từ khóa và đảm bảo đã tick vào ít nhất 1 lựa chọn";
+            return View("Index");
         }
 
 

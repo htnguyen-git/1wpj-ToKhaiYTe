@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ToKhaiYTe.Models.AddressInfo;
 using ToKhaiYTe.Models.ViewModel;
 
@@ -200,7 +201,45 @@ namespace ToKhaiYTe.Models.Service
             List<ManagerIndexViewModel> data = new List<ManagerIndexViewModel>();
             if (modelToSearch.Province)
             {
-                data.AddRange(SearchByProvince(modelToSearch.SearchString));
+                var provincedata = SearchByProvince(modelToSearch.SearchString);
+                if (provincedata != null)
+                {
+                    data.AddRange(provincedata);
+                }
+            }
+
+            if (modelToSearch.District)
+            {
+                var districtData = SearchByDistrict(modelToSearch.SearchString);
+                if (districtData != null)
+                {
+                    data.AddRange(districtData);
+                }
+                
+            }
+            if (modelToSearch.Ward)
+            {
+                var WardData = SearchByWard(modelToSearch.SearchString);
+                if (WardData != null)
+                {
+                    data.AddRange(WardData);
+                }
+            }
+            if (modelToSearch.Name)
+            {
+                var nameData = SearchByName(modelToSearch.SearchString);
+                if (nameData != null)
+                {
+                    data.AddRange(nameData);
+                }
+            }
+            if (modelToSearch.PhoneNumber)
+            {
+                var PhoneData = SearchByPhoneNumber(modelToSearch.SearchString);
+                if (PhoneData != null)
+                {
+                    data.AddRange(PhoneData);
+                }
             }
             return data;
 
@@ -209,10 +248,16 @@ namespace ToKhaiYTe.Models.Service
         #region private getSearchList
         private IEnumerable<ManagerIndexViewModel> SearchByProvince(string SearchString)
         {
-            var province = GetIdByName(SearchString,1).ToString();
+
+            var province = GetIdByName(SearchString, 1);
+            if (province ==-1)
+            {
+                return null;
+            }
+            
             return from m in context.MedicalDeclarationForm
                    join g in context.Gate on m.GateId equals g.Id
-                   where (m.IsDeleted == false && m.IsPublished == true && m.CurrentAddressProvince == province)
+                   where (m.IsDeleted == false && m.IsPublished == true && m.CurrentAddressProvince == province.ToString())
                    orderby m.Id descending
                    select new ManagerIndexViewModel
                    {
@@ -227,6 +272,92 @@ namespace ToKhaiYTe.Models.Service
                        District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
                    };
         }
+        private IEnumerable<ManagerIndexViewModel> SearchByDistrict(string SearchString)
+        {
+            var district = GetIdByName(SearchString,2);
+            if (district ==-1)
+            {
+                return null;
+            }
+            return from m in context.MedicalDeclarationForm
+                   join g in context.Gate on m.GateId equals g.Id
+                   where (m.IsDeleted == false && m.IsPublished == true && m.CurrentAddressDistrict == district.ToString())
+                   orderby m.Id descending
+                   select new ManagerIndexViewModel
+                   {
+                       Gate = g.GateName,
+                       Gender = m.Gender,
+                       MedicalDelcarationFormId = m.Id,
+                       Name = m.Fullname,
+                       National = addressService.GetNameById(m.National, 1),
+                       PhoneNumber = m.PhoneNumber,
+                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                       Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                   };
+        }
+        private IEnumerable<ManagerIndexViewModel> SearchByWard(string SearchString)
+        {
+            var Ward = GetIdByName(SearchString,3);
+            if (Ward == -1)
+            {
+                return null;
+            }
+             return (from m in context.MedicalDeclarationForm
+                   join g in context.Gate on m.GateId equals g.Id
+                   where (m.IsDeleted == false && m.IsPublished == true && m.CurrentAddressWard == Ward.ToString())
+                   orderby m.Id descending
+                   select new ManagerIndexViewModel
+                   {
+                       Gate = g.GateName,
+                       Gender = m.Gender,
+                       MedicalDelcarationFormId = m.Id,
+                       Name = m.Fullname,
+                       National = addressService.GetNameById(m.National, 1),
+                       PhoneNumber = m.PhoneNumber,
+                       Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                       Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                       District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                   });
+        }
+        private IEnumerable<ManagerIndexViewModel> SearchByName(string SearchString)
+        {
+            return (from m in context.MedicalDeclarationForm
+                    join g in context.Gate on m.GateId equals g.Id
+                    where (m.IsDeleted == false && m.IsPublished == true && m.Fullname.ToLower() == SearchString.ToLower())
+                    orderby m.Id descending
+                    select new ManagerIndexViewModel
+                    {
+                        Gate = g.GateName,
+                        Gender = m.Gender,
+                        MedicalDelcarationFormId = m.Id,
+                        Name = m.Fullname,
+                        National = addressService.GetNameById(m.National, 1),
+                        PhoneNumber = m.PhoneNumber,
+                        Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                        Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                        District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                    });
+        }
+        private IEnumerable<ManagerIndexViewModel> SearchByPhoneNumber(string SearchString)
+        {
+            return (from m in context.MedicalDeclarationForm
+                    join g in context.Gate on m.GateId equals g.Id
+                    where (m.IsDeleted == false && m.IsPublished == true && m.PhoneNumber == SearchString)
+                    orderby m.Id descending
+                    select new ManagerIndexViewModel
+                    {
+                        Gate = g.GateName,
+                        Gender = m.Gender,
+                        MedicalDelcarationFormId = m.Id,
+                        Name = m.Fullname,
+                        National = addressService.GetNameById(m.National, 1),
+                        PhoneNumber = m.PhoneNumber,
+                        Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                        Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                        District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                    });
+        }
         /// <summary>
         /// order 1: Province, 2: District, 3: Ward
         /// </summary>
@@ -238,7 +369,8 @@ namespace ToKhaiYTe.Models.Service
             switch (order)
             {
                 case 1:
-                    return context.Province.FirstOrDefault(p => p.Name == Name).Id;
+                    var data= context.Province.FirstOrDefault(p => p.Name == Name);
+                    return data == null ? -1 : data.Id;
                 case 2:
                     return context.District.FirstOrDefault(d => d.Name == Name).Id;
                 case 3:
@@ -247,6 +379,7 @@ namespace ToKhaiYTe.Models.Service
                     return -1;
             }
         }
+
         #endregion
     }
 }
