@@ -44,6 +44,7 @@ namespace ToKhaiYTe.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
