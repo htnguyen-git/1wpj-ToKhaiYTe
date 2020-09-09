@@ -10,7 +10,12 @@ namespace ToKhaiYTe.Models.Service
         int SavePhatologicalSign(MDFViewModel TClass, int MedicalDeclarationId);
         int SaveHistoryOfExposure(MDFViewModel TClass , int MedicalDeclarationId);
         int SaveHealthDeclarationForm(MDFViewModel TClass);
-        IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel();
+        /// <summary>
+        /// SortOrder: id_desc, id
+        /// </summary>
+        /// <param name="SortOrder"></param>
+        /// <returns></returns>
+        IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel(string SortOrder);
         ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId);
         
         IEnumerable<ManagerIndexViewModel> Search(ManagerSearchViewModel modelToSearch);

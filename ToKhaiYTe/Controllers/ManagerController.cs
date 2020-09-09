@@ -15,9 +15,11 @@ namespace ToKhaiYTe.Controllers
         {
             this.healthDeclarationService = healthDeclarationService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            var model = healthDeclarationService.GetsManagerIndexViewModel();
+            ViewData["IdSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            
+            var model = healthDeclarationService.GetsManagerIndexViewModel(sortOrder);
             return View(model);
         }
         public IActionResult GetFullInfo(int Id)

@@ -15,7 +15,7 @@ else
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MedicalDelcarationFormId)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">@Html.DisplayNameFor(model => model.MedicalDelcarationFormId)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Gate)

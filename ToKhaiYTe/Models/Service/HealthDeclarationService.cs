@@ -106,15 +106,14 @@ namespace ToKhaiYTe.Models.Service
             return context.SaveChanges();
         }
 
-        public  IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel()
+        public  IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel(string SortOrder)
         {
-            return (from m in context.MedicalDeclarationForm
+            var data = (from m in context.MedicalDeclarationForm
                           join g in context.Gate on m.GateId equals g.Id
                           where (m.IsDeleted == false && m.IsPublished == true)
-                          orderby m.Id descending
+                          /*orderby m.Id descending*/
                           select new ManagerIndexViewModel
                           {
-
                               Gate = g.GateName,
                               Gender = m.Gender,
                               MedicalDelcarationFormId = m.Id,
@@ -125,8 +124,15 @@ namespace ToKhaiYTe.Models.Service
                               Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
                               District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
                           });
-                       
-            
+            switch (SortOrder)
+            {
+                case "id_desc":
+                    return data.OrderByDescending(m => m.MedicalDelcarationFormId);
+                default:
+                    return data.OrderBy(m => m.MedicalDelcarationFormId);
+                    
+            }
+
         }
 
         public ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId)
