@@ -108,26 +108,34 @@ namespace ToKhaiYTe.Models.Service
             return context.SaveChanges();
         }
 
-        public  IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel()
+        public IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel(string sortOrder)
         {
-                return (from m in context.MedicalDeclarationForm
+
+            var data = (from m in context.MedicalDeclarationForm
                         join g in context.Gate on m.GateId equals g.Id
                         where (m.IsDeleted == false && m.IsPublished == true)
-                        orderby m.Id descending
                         select new ManagerIndexViewModel
-                          {
-                              Gate = g.GateName,
-                              Gender = m.Gender,
-                              MedicalDelcarationFormId = m.Id,
-                              Name = m.Fullname,
-                              National = addressService.GetNameById(m.National, 1),
-                              PhoneNumber = m.PhoneNumber,
-                              Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
-                              Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
-                              District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
-                          });
+                        {
+                            Gate = g.GateName,
+                            Gender = m.Gender,
+                            MedicalDelcarationFormId = m.Id,
+                            Name = m.Fullname,
+                            National = addressService.GetNameById(m.National, 1),
+                            PhoneNumber = m.PhoneNumber,
+                            Province = addressService.GetNameById(m.CurrentAddressProvince, 2),
+                            Ward = addressService.GetNameById(m.CurrentAddressWard, 4),
+                            District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
+                        });
             
-
+            return sortOrder switch
+            {
+                "id_desc" => data.OrderByDescending(m => m.MedicalDelcarationFormId),
+                "gate_desc" => data.OrderByDescending(m => m.Gate),
+                "gate_asc" => data.OrderBy(m => m.Gate),
+                "fullName_desc" => data.OrderByDescending(m => m.Name),
+                "fullName_asc" => data.OrderBy(m => m.Name),
+                _ => data.OrderBy(m => m.MedicalDelcarationFormId),
+            };
         }
 
         public ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId)

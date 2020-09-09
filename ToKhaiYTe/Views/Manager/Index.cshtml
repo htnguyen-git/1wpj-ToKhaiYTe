@@ -5,25 +5,26 @@
 @{
     ViewData["Title"] = "Index";
 }
-    
+
 @if (!Model.Any())
-{
+ {
     <h1>Chưa có dữ liệu</h1>
     <h3>@ViewBag.Status</h3>
-}
+ }
 else
 {
+    
     <table class="table table-responsive table-hover  table-bordered">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MedicalDelcarationFormId)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["idSortParm"]">@Html.DisplayNameFor(model => model.MedicalDelcarationFormId)</a>
                 </th>
                 <th>
-                     @Html.DisplayNameFor(model => model.Gate)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["gateSortParm"]">@Html.DisplayNameFor(model => model.Gate)</a> 
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    <a asp-action="Index"  asp-route-sortOrder="@ViewData["fullNameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a> 
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Gender)
@@ -88,5 +89,3 @@ else
         </tbody>
     </table>
 }
-
-

@@ -15,10 +15,12 @@ namespace ToKhaiYTe.Controllers
         {
             this.healthDeclarationService = healthDeclarationService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            
-            var model = healthDeclarationService.GetsManagerIndexViewModel();
+            ViewData["idSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewData["gateSortParm"] = sortOrder == "gate_desc" ? "gate_asc" : "gate_desc";
+            ViewData["fullNameSortParm"] = sortOrder == "fullName_desc" ? "fullName_asc" : "fullName_desc";
+            var model = healthDeclarationService.GetsManagerIndexViewModel(sortOrder);
             return View(model);
         }
         public IActionResult GetFullInfo(int Id)
@@ -52,7 +54,10 @@ namespace ToKhaiYTe.Controllers
             return View("Index");
         }
         
-        
+        public IActionResult SearchResult(List<ManagerIndexViewModel> listModel)
+        {
+            return View(listModel);
+        }
 
 
     }
