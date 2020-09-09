@@ -15,11 +15,10 @@ namespace ToKhaiYTe.Controllers
         {
             this.healthDeclarationService = healthDeclarationService;
         }
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index()
         {
-            ViewData["IdSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             
-            var model = healthDeclarationService.GetsManagerIndexViewModel(sortOrder);
+            var model = healthDeclarationService.GetsManagerIndexViewModel();
             return View(model);
         }
         public IActionResult GetFullInfo(int Id)
@@ -44,16 +43,16 @@ namespace ToKhaiYTe.Controllers
             if (ModelState.IsValid)
             {
                  list.AddRange(healthDeclarationService.Search(model));
-                
             }
             if (list != null)
             {
-                
                 return View("Index", list);
             }
             ViewBag.Status = $"Hãy kiểm tra lại từ khóa và đảm bảo đã tick vào ít nhất 1 lựa chọn";
             return View("Index");
         }
+        
+        
 
 
     }

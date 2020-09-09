@@ -3,22 +3,22 @@
 @{
     ViewData["Title"] = "Index";
 }
-    <h3>@ViewBag.Status</h3>
+    
 @if (!Model.Any())
 {
     <h1>Chưa có dữ liệu</h1>
-    
+    <h3>@ViewBag.Status</h3>
 }
 else
 {
-    <table class="table table-responsive table-hover">
+    <table class="table table-responsive table-hover  table-bordered">
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">@Html.DisplayNameFor(model => model.MedicalDelcarationFormId)</a>
+                    @Html.DisplayNameFor(model => model.MedicalDelcarationFormId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Gate)
+                     @Html.DisplayNameFor(model => model.Gate)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
@@ -41,7 +41,7 @@ else
                 <th>
                     @Html.DisplayNameFor(model => model.Ward)
                 </th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>
