@@ -42,7 +42,9 @@ namespace ToKhaiYTe.Models.Service
                 CurrentAddressWard = TClass.CurrentAddressWard,
                 ListCountryhasGoneThrough = TClass.ListCountryhasGoneThrough,
                 PhoneNumber = TClass.PhoneNumber,
-                UsedVaccineList = TClass.UsedVaccineList
+                UsedVaccineList = TClass.UsedVaccineList,
+                IsPublished = true,
+                IsDeleted =false
             };
             context.MedicalDeclarationForm.Add(MDF);
             context.SaveChanges();
@@ -56,7 +58,7 @@ namespace ToKhaiYTe.Models.Service
                 ContactWithSickPeople = TClass.ContactWithSickPeople,
                 IsPublished = true,
                 IsDeleted = false,
-                MedicalDeclarationFormId = MedicalDeclarationId
+                MedicalDeclarationFormId = MedicalDeclarationId,
             };
             context.HistoryOfExposure.Add(HoE);
             return context.SaveChanges();

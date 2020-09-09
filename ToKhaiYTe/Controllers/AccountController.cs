@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ToKhaiYTe.Models;
@@ -6,6 +7,7 @@ using ToKhaiYTe.Models.User;
 
 namespace ToKhaiYTe.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> userManager;
@@ -57,6 +59,7 @@ namespace ToKhaiYTe.Controllers
                     return RedirectToAction("Index", "Manager");
                 }
             }
+            ViewBag.Status = "Tài khoản hoặc mật khẩu không chính xác";
             return View(model);
         }
 

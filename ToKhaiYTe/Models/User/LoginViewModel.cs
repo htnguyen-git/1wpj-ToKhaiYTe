@@ -9,7 +9,7 @@ namespace ToKhaiYTe.Models.User
     public class LoginViewModel
     {
         [Required]
-        [Display(Name ="User' name or EMail")]
+        [Display(Name ="User'Name or Email")]
         public string UserName { get; set; }
         [Required]
         [Display(Name = "Password")]

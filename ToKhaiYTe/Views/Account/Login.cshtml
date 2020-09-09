@@ -1,10 +1,10 @@
 ﻿@model ToKhaiYTe.Models.User.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Log in";
 }
 
-<h1 class="text-center">Login</h1>
+<h1 class="text-center">Log in</h1>
 
 <hr />
 
@@ -33,5 +33,6 @@
     </form>
      
 </div>
-
+<h6 class="text-center text-danger" >@ViewBag.Status</h6>
+@await Html.PartialAsync("_ValidationScriptsPartial");
 

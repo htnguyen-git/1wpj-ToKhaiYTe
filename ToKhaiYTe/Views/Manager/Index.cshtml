@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ToKhaiYTe.Models.ViewModel.ManagerIndexViewModel>
-
+@{ 
+    string site = "http://www.htntokhaiyte.somee.com";
+}
 @{
     ViewData["Title"] = "Index";
 }
@@ -47,7 +49,7 @@ else
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="document.location = 'https://localhost:44377/manager/getfullinfo/@item.MedicalDelcarationFormId';">
+                <tr onclick="document.location = '@site/manager/getfullinfo/@item.MedicalDelcarationFormId';">
 
                     <td>
                         @Html.DisplayFor(modelItem => item.MedicalDelcarationFormId)
