@@ -50,10 +50,10 @@ namespace ToKhaiYTe.Controllers
             }
             if (list != null)
             {
-                return View("Index", list);
+                return View("SearchResult", list);
             }
             ViewBag.Status = $"Hãy kiểm tra lại từ khóa và đảm bảo đã tick vào ít nhất 1 lựa chọn";
-            return View("Index");
+            return View("SearchResult",list);
         }
         
         public IActionResult SearchResult(List<ManagerIndexViewModel> listModel)
