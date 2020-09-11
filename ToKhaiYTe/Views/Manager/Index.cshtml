@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ToKhaiYTe.Models.ViewModel.ManagerIndexViewModel>
+﻿@model PaginatedList<ToKhaiYTe.Models.ViewModel.ManagerIndexViewModel>
 @{ 
     string site = "http://www.htntokhaiyte.somee.com";
 }
@@ -18,31 +18,31 @@ else
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["idSortParm"]">@Html.DisplayNameFor(model => model.MedicalDelcarationFormId)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["idSortParm"]">@Html.DisplayNameFor(model => model[0].MedicalDelcarationFormId)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["gateSortParm"]">@Html.DisplayNameFor(model => model.Gate)</a> 
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["gateSortParm"]">@Html.DisplayNameFor(model => model[0].Gate)</a> 
                 </th>
                 <th>
-                    <a asp-action="Index"  asp-route-sortOrder="@ViewData["fullNameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a> 
+                    <a asp-action="Index"  asp-route-sortOrder="@ViewData["fullNameSortParm"]">@Html.DisplayNameFor(model => model[0].Name)</a> 
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Gender)
+                    @Html.DisplayNameFor(model => model[0].Gender)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                    @Html.DisplayNameFor(model => model[0].PhoneNumber)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.National)
+                    @Html.DisplayNameFor(model => model[0].National)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Province)
+                    @Html.DisplayNameFor(model => model[0].Province)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.District)
+                    @Html.DisplayNameFor(model => model[0].District)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Ward)
+                    @Html.DisplayNameFor(model => model[0].Ward)
                 </th>
                 
             </tr>
@@ -89,3 +89,21 @@ else
         </tbody>
     </table>
 }
+@{ 
+    var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<p>@Model.PageIndex / @Model.TotalPages</p>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["currentSort"]"
+   asp-route-pageIndex="@(Model.PageIndex-1)"
+   class="btn btn-outline-info @previousDisabled"
+   >
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["currentSort"]"
+   asp-route-pageIndex="@(Model.PageIndex+1)"
+   class="btn btn-outline-info @nextDisabled">
+    Next
+</a>

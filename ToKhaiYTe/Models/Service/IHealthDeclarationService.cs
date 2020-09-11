@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ToKhaiYTe.Models.ViewModel;
 
 namespace ToKhaiYTe.Models.Service
@@ -11,7 +12,7 @@ namespace ToKhaiYTe.Models.Service
         int SaveHistoryOfExposure(MDFViewModel TClass , int MedicalDeclarationId);
         int SaveHealthDeclarationForm(MDFViewModel TClass);
        
-        IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel(string sortOrder);
+        Task<IEnumerable<ManagerIndexViewModel>> GetsManagerIndexViewModel(string sortOrder, int? pageIndex);
         ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId);
         
         IEnumerable<ManagerIndexViewModel> Search(ManagerSearchViewModel modelToSearch);

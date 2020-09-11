@@ -108,7 +108,7 @@ namespace ToKhaiYTe.Models.Service
             return context.SaveChanges();
         }
 
-        public IEnumerable<ManagerIndexViewModel> GetsManagerIndexViewModel(string sortOrder)
+        public async Task<IEnumerable<ManagerIndexViewModel>> GetsManagerIndexViewModel(string sortOrder, int? pageIndex)
         {
 
             var data = (from m in context.MedicalDeclarationForm
@@ -127,7 +127,7 @@ namespace ToKhaiYTe.Models.Service
                             District = addressService.GetNameById(m.CurrentAddressDistrict, 3),
                         });
             
-            return sortOrder switch
+            data= sortOrder switch
             {
                 "id_desc" => data.OrderByDescending(m => m.MedicalDelcarationFormId),
                 "gate_desc" => data.OrderByDescending(m => m.Gate),
@@ -136,6 +136,9 @@ namespace ToKhaiYTe.Models.Service
                 "fullName_asc" => data.OrderBy(m => m.Name),
                 _ => data.OrderBy(m => m.MedicalDelcarationFormId),
             };
+
+            int pageSize = 10;
+            return await PaginatedList<ManagerIndexViewModel>.CreateAsync(data , pageIndex?? 1, pageSize);
         }
 
         public ManagerFullInfoViewModel GetInfo(int MedicalDeclarationId)

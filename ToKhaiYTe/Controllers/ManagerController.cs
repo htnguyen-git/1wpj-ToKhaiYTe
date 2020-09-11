@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ToKhaiYTe.Models.Service;
 using ToKhaiYTe.Models.ViewModel;
 
@@ -15,12 +16,13 @@ namespace ToKhaiYTe.Controllers
         {
             this.healthDeclarationService = healthDeclarationService;
         }
-        public IActionResult Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, int? pageIndex)
         {
             ViewData["idSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["gateSortParm"] = sortOrder == "gate_desc" ? "gate_asc" : "gate_desc";
             ViewData["fullNameSortParm"] = sortOrder == "fullName_desc" ? "fullName_asc" : "fullName_desc";
-            var model = healthDeclarationService.GetsManagerIndexViewModel(sortOrder);
+            ViewData["currentSort"] = sortOrder;
+            var model =await healthDeclarationService.GetsManagerIndexViewModel(sortOrder, pageIndex);
             return View(model);
         }
         public IActionResult GetFullInfo(int Id)
