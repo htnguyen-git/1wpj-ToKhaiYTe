@@ -49,6 +49,7 @@ namespace ToKhaiYTe
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
 
             app.UseRouting();
 
