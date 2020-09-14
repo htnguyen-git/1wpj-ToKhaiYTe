@@ -18,7 +18,7 @@ namespace ToKhaiYTe.Controllers
         }
         public async Task<IActionResult> Index(string sortOrder, int? pageIndex)
         {
-            ViewData["idSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewData["idSortParm"] = string.IsNullOrEmpty(sortOrder) ? "id_asc" : "";
             ViewData["gateSortParm"] = sortOrder == "gate_desc" ? "gate_asc" : "gate_desc";
             ViewData["fullNameSortParm"] = sortOrder == "fullName_desc" ? "fullName_asc" : "fullName_desc";
             ViewData["currentSort"] = sortOrder;

@@ -129,12 +129,12 @@ namespace ToKhaiYTe.Models.Service
             
             data= sortOrder switch
             {
-                "id_desc" => data.OrderByDescending(m => m.MedicalDelcarationFormId),
+                "id_asc" => data.OrderBy(m => m.MedicalDelcarationFormId),
                 "gate_desc" => data.OrderByDescending(m => m.Gate),
                 "gate_asc" => data.OrderBy(m => m.Gate),
                 "fullName_desc" => data.OrderByDescending(m => m.Name),
                 "fullName_asc" => data.OrderBy(m => m.Name),
-                _ => data.OrderBy(m => m.MedicalDelcarationFormId),
+                _ => data.OrderByDescending(m => m.MedicalDelcarationFormId),
             };
 
             int pageSize = 10;
